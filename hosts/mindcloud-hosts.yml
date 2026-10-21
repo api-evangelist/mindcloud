@@ -1,4 +1,4 @@
-generated: '2026-10-20'
+generated: '2026-10-21'
 method: derived
 source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
 generator: derive-hosts.py
@@ -27,7 +27,6 @@ hosts:
   - probed
   - site-links
   - docs-index
-  - contract-discovery
   - well-known
   types: []
   serves:
@@ -63,14 +62,19 @@ hosts:
   relation: own
 - host: docs.mindcloud.co
   found_by:
+  - pointer
   - probed
-  - site-links
   - namespace-probe
+  - contract-discovery
   - well-known
-  types: []
-  serves: []
+  - vendor-detect
+  types:
+  - Documentation
+  serves:
+  - cdn
   title: Overview - MindCloud
   status: 200
+  vendor: cloudflare
   registrable_domain: mindcloud.co
   role: docs
   relation: own
@@ -93,6 +97,11 @@ hosts:
   - contract-discovery
   - well-known
   types:
+  - TermsOfService
+  - Support
+  - PrivacyPolicy
+  - GettingStarted
+  - APIReference
   - Website
   serves:
   - api
@@ -105,7 +114,6 @@ hosts:
   found_by:
   - probed
   - site-links
-  - contract-discovery
   - well-known
   types: []
   serves: []
@@ -133,11 +141,14 @@ hosts:
   relation: own
 - host: trust.mindcloud.co
   found_by:
+  - pointer
   - probed
   - site-links
   - docs-index
+  - contract-discovery
   - well-known
-  types: []
+  types:
+  - TrustCenter
   serves:
   - docs
   registrable_domain: mindcloud.co

@@ -1,0 +1,638 @@
+openapi: 3.2.0
+info:
+  title: MindCloud Public Connections API
+  version: 2.0.0
+  description: REST surface under /v2. Authenticate with a company-scoped API key sent as a bearer token. Each key holds a set of permissions; each operation lists the ones it requires as the apiKey security roles. A request may use a permission only while the user who created the key also holds it.
+servers:
+- url: https://connect.mindcloud.co
+security:
+- apiKey: []
+tags:
+- name: Connections
+paths:
+  /v2/connections:
+    get:
+      operationId: v2-list-connections
+      summary: List connections (credentials) for the company
+      description: 'List connections (credentials) for the company. Secrets are never included. Filter by appId, status, valid, or expiresOn for expiry monitoring.
+
+
+        Each filterable field is also a query parameter: `status=active` matches it exactly, and bracket operators (eq, ne, gt, gte, lt, lte, contains, starts, ends, in, nin) compare, e.g. `createdOn[gte]=2026-01-01` or `status[in]=failed,cancelled`. contains, starts, and ends apply to text fields only.
+
+
+        Requires the API key permission credential:view.'
+      tags:
+      - Connections
+      security:
+      - apiKey:
+        - credential:view
+      parameters:
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Comma-separated fields to return; all of them when left out, and id always. Each item then carries only those keys, whatever its schema requires. Fields: id, appId, status, isCompany, endUserId, installationId, userId, testedOn, expiresOn, authenticatedOn, createdOn, createdBy, updatedOn.'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Comma-separated sort fields; prefix one with - for descending. Sortable fields: id, appId, status, isCompany, endUserId, installationId, userId, testedOn, expiresOn, authenticatedOn, createdOn, createdBy, updatedOn. Default: -createdOn.'
+      - name: where
+        in: query
+        required: false
+        schema:
+          type: string
+          maxLength: 2048
+        description: 'RSQL filter expression. Filterable fields: id, appId, status, isCompany, endUserId, installationId, userId, testedOn, expiresOn, authenticatedOn, createdOn, createdBy, updatedOn. Operators: ==, !=, >, >=, <, <=, =in=, =out=, =like=. Logical: ; (AND), , (OR); AND binds tighter than OR. Example: "status==active;name=like=Sales*"'
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on id: `id=value` matches it exactly. Bracket operators: `id[ne]`, `id[gt]`, `id[gte]`, `id[lt]`, `id[lte]`, `id[contains]`, `id[starts]`, `id[ends]`, and `id[in]` / `id[nin]` with comma-separated values.'
+      - name: appId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on appId: `appId=value` matches it exactly. Bracket operators: `appId[ne]`, `appId[gt]`, `appId[gte]`, `appId[lt]`, `appId[lte]`, `appId[contains]`, `appId[starts]`, `appId[ends]`, and `appId[in]` / `appId[nin]` with comma-separated values.'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on status: `status=value` matches it exactly. Bracket operators: `status[ne]`, `status[gt]`, `status[gte]`, `status[lt]`, `status[lte]`, `status[contains]`, `status[starts]`, `status[ends]`, and `status[in]` / `status[nin]` with comma-separated values.'
+      - name: isCompany
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: 'Filter on isCompany: `isCompany=value` matches it exactly. Bracket operators: `isCompany[ne]`, `isCompany[gt]`, `isCompany[gte]`, `isCompany[lt]`, `isCompany[lte]`, and `isCompany[in]` / `isCompany[nin]` with comma-separated values.'
+      - name: endUserId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on endUserId: `endUserId=value` matches it exactly. Bracket operators: `endUserId[ne]`, `endUserId[gt]`, `endUserId[gte]`, `endUserId[lt]`, `endUserId[lte]`, `endUserId[contains]`, `endUserId[starts]`, `endUserId[ends]`, and `endUserId[in]` / `endUserId[nin]` with comma-separated values.'
+      - name: installationId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on installationId: `installationId=value` matches it exactly. Bracket operators: `installationId[ne]`, `installationId[gt]`, `installationId[gte]`, `installationId[lt]`, `installationId[lte]`, `installationId[contains]`, `installationId[starts]`, `installationId[ends]`, and `installationId[in]` / `installationId[nin]` with comma-separated values.'
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on userId: `userId=value` matches it exactly. Bracket operators: `userId[ne]`, `userId[gt]`, `userId[gte]`, `userId[lt]`, `userId[lte]`, `userId[contains]`, `userId[starts]`, `userId[ends]`, and `userId[in]` / `userId[nin]` with comma-separated values.'
+      - name: testedOn
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on testedOn: `testedOn=value` matches it exactly. A date or timestamp, such as 2026-10-01 or 2026-10-01T12:00:00Z. Bracket operators: `testedOn[ne]`, `testedOn[gt]`, `testedOn[gte]`, `testedOn[lt]`, `testedOn[lte]`, and `testedOn[in]` / `testedOn[nin]` with comma-separated values.'
+      - name: expiresOn
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on expiresOn: `expiresOn=value` matches it exactly. A date or timestamp, such as 2026-10-01 or 2026-10-01T12:00:00Z. Bracket operators: `expiresOn[ne]`, `expiresOn[gt]`, `expiresOn[gte]`, `expiresOn[lt]`, `expiresOn[lte]`, and `expiresOn[in]` / `expiresOn[nin]` with comma-separated values.'
+      - name: authenticatedOn
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on authenticatedOn: `authenticatedOn=value` matches it exactly. A date or timestamp, such as 2026-10-01 or 2026-10-01T12:00:00Z. Bracket operators: `authenticatedOn[ne]`, `authenticatedOn[gt]`, `authenticatedOn[gte]`, `authenticatedOn[lt]`, `authenticatedOn[lte]`, and `authenticatedOn[in]` / `authenticatedOn[nin]` with comma-separated values.'
+      - name: createdOn
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on createdOn: `createdOn=value` matches it exactly. A date or timestamp, such as 2026-10-01 or 2026-10-01T12:00:00Z. Bracket operators: `createdOn[ne]`, `createdOn[gt]`, `createdOn[gte]`, `createdOn[lt]`, `createdOn[lte]`, and `createdOn[in]` / `createdOn[nin]` with comma-separated values.'
+      - name: createdBy
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on createdBy: `createdBy=value` matches it exactly. Bracket operators: `createdBy[ne]`, `createdBy[gt]`, `createdBy[gte]`, `createdBy[lt]`, `createdBy[lte]`, `createdBy[contains]`, `createdBy[starts]`, `createdBy[ends]`, and `createdBy[in]` / `createdBy[nin]` with comma-separated values.'
+      - name: updatedOn
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on updatedOn: `updatedOn=value` matches it exactly. A date or timestamp, such as 2026-10-01 or 2026-10-01T12:00:00Z. Bracket operators: `updatedOn[ne]`, `updatedOn[gt]`, `updatedOn[gte]`, `updatedOn[lt]`, `updatedOn[lte]`, and `updatedOn[in]` / `updatedOn[nin]` with comma-separated values.'
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Connection'
+                  meta:
+                    $ref: '#/components/schemas/ListMeta'
+                required:
+                - success
+                - data
+                - meta
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/connections/{connectionId}:
+    get:
+      operationId: v2-get-connection
+      summary: Get one connection (credential)
+      description: 'Get one connection (credential). Secrets are never included.
+
+
+        Requires the API key permission credential:view.'
+      tags:
+      - Connections
+      security:
+      - apiKey:
+        - credential:view
+      parameters:
+      - name: connectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Connection'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        '403':
+          description: An Embedded end-user or installation connection cannot be read under X-Company-Id (CHILD_SCOPE_FORBIDDEN, COMPANY_SCOPE_MISMATCH).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: v2-delete-connection
+      summary: Delete a connection, revoking it on the provider side first when the app…
+      description: 'Delete a connection, revoking it on the provider side first when the app declares a revoke action. Active workflows using the connection block the delete with 409 CONNECTION_IN_USE, and the error body names them so the caller can act. Inactive workflows do not block, matching the product.
+
+
+        Requires the API key permission credential:delete.'
+      tags:
+      - Connections
+      security:
+      - apiKey:
+        - credential:delete
+      parameters:
+      - name: connectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/DeletedResource'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        '400':
+          description: The request is invalid (INVALID_QUERY, CREDENTIAL_DELETE_INVALID_REQUEST), or the delete was refused (CONNECTION_DELETE_FAILED).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: An Embedded end-user or installation connection cannot be deleted under X-Company-Id (CHILD_SCOPE_FORBIDDEN, COMPANY_SCOPE_MISMATCH).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No connection with this id belongs to the company (NOT_FOUND), or its app definition is gone (CREDENTIAL_DELETE_APP_NOT_FOUND).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Active workflows still use the connection (CONNECTION_IN_USE). The error body names them.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionInUseErrorResponse'
+        '500':
+          description: The credential or secret delete failed (CREDENTIAL_DELETE_FAILED).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: The provider-side revoke declared by the app failed, so nothing was deleted (CREDENTIAL_DELETE_ACTION_FAILED).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/connections/{connectionId}/test:
+    post:
+      operationId: v2-test-connection
+      summary: Test a connection against its provider and report the verdict
+      description: 'Test a connection against its provider and report the verdict. Takes no body: the app and its version come from the connection itself. An app that declares no connection test answers 200 with supported false and status unsupported, which is a verdict rather than an error. The test has side effects, the same ones the product has: it updates the stored connection status and can rename the connection from the test result.
+
+
+        Requires the API key permission credential:edit.'
+      tags:
+      - Connections
+      security:
+      - apiKey:
+        - credential:edit
+      parameters:
+      - name: connectionId
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/ConnectionTestResult'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        '400':
+          description: The request is invalid (INVALID_QUERY).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: An Embedded end-user or installation connection cannot be tested under X-Company-Id (CHILD_SCOPE_FORBIDDEN, COMPANY_SCOPE_MISMATCH).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No connection with this id belongs to the company (NOT_FOUND).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: The connection's app definition could not be loaded, so no test could run (CONNECTION_APP_UNAVAILABLE). Retry the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination (default 0).
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: Maximum number of results to return (1-1000, default 100).
+    CompanyId:
+      name: X-Company-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      example: K3vX9qLm2RtA
+      description: Optional. The id of a child organization of your API key's company to act on. Leave it out to act on the key's own company. See [Child organizations](https://mindcloud.co/docs/api/rest/introduction/child-organizations).
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: 'Fixed by the status: 400 VALIDATION_FAILED, 401 UNAUTHORIZED, 403 FORBIDDEN, 404 NOT_FOUND, 409 CONFLICT, 410 GONE, 413 PAYLOAD_TOO_LARGE, 421 and 503 UNAVAILABLE, 429 RATE_LIMITED, 500 INTERNAL_ERROR, 502 PROVIDER_ERROR.'
+              examples:
+              - VALIDATION_FAILED
+              - UNAUTHORIZED
+              - FORBIDDEN
+              - NOT_FOUND
+              - CONFLICT
+              - GONE
+              - PAYLOAD_TOO_LARGE
+              - RATE_LIMITED
+              - INTERNAL_ERROR
+              - PROVIDER_ERROR
+              - UNAVAILABLE
+            message:
+              type: string
+            details:
+              type: object
+              description: The specific cause (reason) and any evidence for it. Absent when the code says everything.
+              properties:
+                reason:
+                  type: string
+                  description: The specific cause, for example UNKNOWN_FILTER_FIELD or CONNECTION_IN_USE.
+                field:
+                  type: string
+                  description: The parameter, filter, sort, or body field a 400 refused.
+                accepted:
+                  type: array
+                  items: {}
+                  description: 'What a 400 would have accepted instead: parameter names, field names, or enum values.'
+                provider:
+                  type: object
+                  description: 'On 502 PROVIDER_ERROR: the provider answer that failed.'
+                  properties:
+                    status:
+                      type: integer
+                      description: The provider's HTTP status.
+                    code:
+                      type: string
+                      description: The provider's own error code, when it sends one.
+          required:
+          - code
+          - message
+      required:
+      - success
+      - error
+    ListMeta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: Matching records. A list read in SQL stops counting at 10000.
+            totalCountExact:
+              type: boolean
+              description: False when totalCount stopped at that cap.
+            hasNextPage:
+              type: boolean
+              description: True when another page follows. Page with this, not totalCount.
+            hasPreviousPage:
+              type: boolean
+          required:
+          - totalCount
+          - totalCountExact
+          - hasNextPage
+          - hasPreviousPage
+      required:
+      - pagination
+    DeletedResource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the resource that was deleted.
+      required:
+      - id
+    Connection:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique id of the connection.
+        appId:
+          type:
+          - string
+          - 'null'
+          description: The app this connection signs into.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The connection's current status.
+        isCompany:
+          type:
+          - boolean
+          - 'null'
+          description: True when the whole company shares this connection.
+        endUserId:
+          type:
+          - string
+          - 'null'
+          description: The embedded end user who owns it, if any.
+        installationId:
+          type:
+          - string
+          - 'null'
+          description: The embedded installation it belongs to, if any.
+        userId:
+          type:
+          - string
+          - 'null'
+          description: The user who owns it, if it is personal.
+        testedOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The last successful test.
+        expiresOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the credential expires, if it does. Filter on this to catch expiring credentials early.
+        authenticatedOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The last time someone authenticated it.
+        createdOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the connection was created.
+        createdBy:
+          type:
+          - string
+          - 'null'
+          description: Who created it.
+        updatedOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When it was last changed.
+      required:
+      - id
+      - appId
+      - status
+      - isCompany
+      - endUserId
+      - installationId
+      - userId
+      - testedOn
+      - expiresOn
+      - authenticatedOn
+      - createdOn
+      - createdBy
+      - updatedOn
+    ConnectionTestResult:
+      type: object
+      properties:
+        supported:
+          type: boolean
+          description: False when the app declares no connection test; then no test ran.
+        status:
+          type: string
+          description: 'The verdict: the stored connection status after the test, or "unsupported".'
+        testedOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the test ran.
+        message:
+          type:
+          - string
+          - 'null'
+          description: Why the test failed or could not run. Empty when it passed.
+      required:
+      - supported
+      - status
+      - testedOn
+      - message
+    ConnectionInUseErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              const: CONFLICT
+            message:
+              type: string
+            details:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  const: CONNECTION_IN_USE
+                workflows:
+                  type: array
+                  description: The active workflows using the connection. Move them off it before deleting.
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      usageCount:
+                        type: integer
+                        description: How many steps in that workflow use the connection.
+                    required:
+                    - id
+                    - name
+                    - usageCount
+              required:
+              - reason
+              - workflows
+          required:
+          - code
+          - message
+          - details
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: 'Company-scoped MindCloud API key sent as `Authorization: Bearer <key>`. Each key holds permissions from the MindCloud roles catalog (workflow:view, workflow:run, universal:read, api_key:manage, ...), chosen when it is created; each operation lists the ones it requires as this scheme''s roles. A request may use a permission only while the user who created the key still holds it in the company the request acts on; a missing one answers 403 with details.reason API_KEY_PERMISSION_DENIED and details.required, and a key whose creator left the organization answers API_KEY_CREATOR_INACTIVE. The key''s accessLevel (full_access, run_workflows, read_only, or none) summarizes its permissions. Create a key at https://app.mindcloud.co/user/api-keys.'

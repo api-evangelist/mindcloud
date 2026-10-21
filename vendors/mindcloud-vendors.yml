@@ -1,4 +1,4 @@
-generated: '2026-10-20'
+generated: '2026-10-21'
 method: probed
 source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
 registry: all/0-working/vendors.yml
@@ -19,7 +19,7 @@ vendors:
 - vendor: cloudflare
   name: Cloudflare
   area: cdn
-  host: mindcloud.co
+  host: docs.mindcloud.co
   evidence: header:cf-ray
   signal: header
   confidence: high
@@ -35,7 +35,12 @@ reliance:
   note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
     cannot tell those apart
 checked:
-- 'docs-platform: no-docs-host'
+- 'docs-platform: custom'
+- mindcloud.co (Support)
+- mindcloud.co (GettingStarted)
+- docs.mindcloud.co (Documentation)
+- mindcloud.co (APIReference)
 - mindcloud.co (Website)
 - mindcloud.co (baseURL)
 - connect.mindcloud.co (baseURL)
+- connect.mindcloud.co (mcp)

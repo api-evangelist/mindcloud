@@ -1,0 +1,46 @@
+{
+  "provider": "mindcloud",
+  "sources": [
+    "connect-mindcloud-openapi.json"
+  ],
+  "outputs": [
+    "mindcloud-api-keys-api-openapi.yml",
+    "mindcloud-child-companies-api-openapi.yml",
+    "mindcloud-companies-api-openapi.yml",
+    "mindcloud-connections-api-openapi.yml",
+    "mindcloud-embedded-api-openapi.yml",
+    "mindcloud-environments-api-openapi.yml",
+    "mindcloud-me-api-openapi.yml",
+    "mindcloud-members-api-openapi.yml",
+    "mindcloud-meta-api-openapi.yml",
+    "mindcloud-roles-api-openapi.yml",
+    "mindcloud-runs-api-openapi.yml",
+    "mindcloud-universal-api-openapi.yml",
+    "mindcloud-usage-api-openapi.yml",
+    "mindcloud-workflows-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/connect-mindcloud-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "connect-mindcloud-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "connect-mindcloud-openapi.json: declared missing tag: api-keys",
+    "connect-mindcloud-openapi.json: declared missing tag: child-companies",
+    "connect-mindcloud-openapi.json: declared missing tag: companies",
+    "connect-mindcloud-openapi.json: declared missing tag: connections",
+    "connect-mindcloud-openapi.json: declared missing tag: embedded",
+    "connect-mindcloud-openapi.json: declared missing tag: environments",
+    "connect-mindcloud-openapi.json: declared missing tag: me",
+    "connect-mindcloud-openapi.json: declared missing tag: members",
+    "connect-mindcloud-openapi.json: declared missing tag: meta",
+    "connect-mindcloud-openapi.json: declared missing tag: roles",
+    "connect-mindcloud-openapi.json: declared missing tag: runs",
+    "connect-mindcloud-openapi.json: declared missing tag: universal",
+    "connect-mindcloud-openapi.json: declared missing tag: usage",
+    "connect-mindcloud-openapi.json: declared missing tag: workflows",
+    "apis.yml register: written (+14 apis, 15 total)"
+  ],
+  "skipped": []
+}

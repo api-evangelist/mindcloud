@@ -1,4 +1,4 @@
-generated: '2026-10-20'
+generated: '2026-10-21'
 method: searched
 generator: extract-docs-artifacts.py (local)
 source: https://mindcloud.co/changelog
@@ -10,6 +10,7 @@ entries:
   - Today we're introducing the MindCloud API and its new V2 surface, with 23 endpoints for reading workflows, runs and results, connections,
     users, roles, environments, and usage, plus creating and revoking API keys.
   - All V1 endpoints remain supported for existing integrations, but V1 is frozen and deprecated for new development.
+  - New integrations should use V2.
   date: '2026-07-24'
 - breaking: false
   highlights:
@@ -18,8 +19,9 @@ entries:
   date: '2026-06-23'
 - breaking: false
   highlights:
-  - Embedded installations can now carry customer‑specific context through setup, workflow runs, and logs.
+  - Embedded installations can now carry customer-specific context through setup, workflow runs, and logs.
   - Build installation labels from setup details such as customer name or email.
+  - Validate required setup fields before an embedded workflow is installed.
   - Pass the current installation ID into embedded workflow runs.
   date: '2026-06-17'
 - breaking: false
@@ -29,10 +31,11 @@ entries:
   date: '2026-06-14'
 - breaking: false
   highlights:
-  - The AI workflow assistant now gives builders more control during longer workflow‑building sessions and safer recovery when a change needs
+  - The AI workflow assistant now gives builders more control during longer workflow-building sessions and safer recovery when a change needs
     to be reversed.
-  - Stop in‑progress assistant responses when needed.
+  - Stop in-progress assistant responses when needed.
   - Dictate prompts with voice input or use keyboard shortcuts to move through assistant actions.
+  - Preview and undo recent assistant changes.
   date: '2026-06-12'
 - breaking: false
   highlights:
@@ -42,7 +45,8 @@ entries:
 - breaking: false
   highlights:
   - Flow control steps can now respond differently when a step succeeds, fails, or returns no results.
-  - Configure separate behavior for success, failure, and empty‑result outcomes.
+  - Configure separate behavior for success, failure, and empty-result outcomes.
+  - Send email or Slack notifications with values from previous workflow steps.
   date: '2026-06-03'
 - breaking: false
   highlights:
@@ -62,14 +66,14 @@ entries:
   date: '2026-05-29'
 - breaking: false
   highlights:
-  - Workflow schedules now support precise fixed‑time runs and recover better when scheduled work is picked up slightly late.
-  - Choose exact schedule times beyond standard quarter‑hour options.
+  - Workflow schedules now support precise fixed-time runs and recover better when scheduled work is picked up slightly late.
+  - Choose exact schedule times beyond standard quarter-hour options.
   date: '2026-05-28'
 - breaking: false
   highlights:
-  - MindCloud added 22 apps this week, moving beyond one‑off launches into a broader catalog that covers customer messages, marketing operations,
+  - MindCloud added 22 apps this week, moving beyond one-off launches into a broader catalog that covers customer messages, marketing operations,
     commerce activity, scheduling, analytics, and utility APIs.
   date: '2026-04-05'
-current_version: API V2
-note: Versioning scheme not explicitly stated on the page.
+current_version: V2
+note: Versioning scheme is based on API surface versions (e.g., V2). The latest listed version is V2 introduced on 2026-07-24.
 docs: https://mindcloud.co/changelog

@@ -14,9 +14,8 @@ x-type: company
 
 x-source: harvest:g2-catalog
 
-x-tier: stub
-
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-21 (modular-v1; was harvest)
 
 specificationVersion: '0.20'
 
@@ -38,6 +37,14 @@ maintainers:
   email: info@apis.io
 
 common:
+- type: Deprecation
+  url: lifecycle/mindcloud-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/mindcloud-lifecycle.yml
+- type: Overlay
+  url: overlays/mindcloud-openapi-overlay.yaml
+- type: MCPServer
+  url: mcp/mindcloud-mcp.yml
 - type: AgenticAccess
   url: agentic-access/mindcloud-agentic-access.yml
 - type: Spectral
@@ -84,8 +91,6 @@ common:
   url: security/mindcloud-domain-security.yml
 - type: Website
   url: https://mindcloud.co/
-- type: OpenAPI
-  url: openapi/mindcloud-openapi.json
   source: https://mindcloud.co/openapi.json
 
 apis:
@@ -94,8 +99,6 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://mindcloud.co
   properties:
-  - type: OpenAPI
-    url: openapi/mindcloud-openapi.json
   - type: JSONSchema
     url: json-schema/mindcloud-me-schema.json
   - type: JSONSchema
@@ -109,13 +112,16 @@ apis:
   - type: JSONSchema
     url: json-schema/mindcloud-run-schema.json
   aid: mindcloud:mindcloud-api
-- name: Connect API
-  description: Connect API for MindCloud integrations
-  humanURL: https://mindcloud.co/docs/connect
+- aid: mindcloud:mindcloud-api-keys-api
+  name: MindCloud API Keys API
+  description: The api-keys API from MindCloud — 2 operation(s) for api-keys.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - api-keys
   properties:
   - type: OpenAPI
-    url: openapi/connect-mindcloud-openapi.json
+    url: openapi/mindcloud-api-keys-api-openapi.yml
   - type: JSONSchema
     url: json-schema/mindcloud-me-schema.json
   - type: JSONSchema
@@ -128,23 +134,312 @@ apis:
     url: json-schema/mindcloud-universal-action-detail-schema.json
   - type: JSONSchema
     url: json-schema/mindcloud-run-schema.json
-  aid: mindcloud:connect-api
-
+- aid: mindcloud:mindcloud-child-companies-api
+  name: MindCloud Child Companies API
+  description: The child-companies API from MindCloud — 2 operation(s) for child-companies.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - child-companies
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-child-companies-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-companies-api
+  name: MindCloud Companies API
+  description: The companies API from MindCloud — 2 operation(s) for companies.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - companies
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-companies-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-connections-api
+  name: MindCloud Connections API
+  description: The connections API from MindCloud — 3 operation(s) for connections.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - connections
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-connections-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-embedded-api
+  name: MindCloud Embedded API
+  description: The embedded API from MindCloud — 2 operation(s) for embedded.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - embedded
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-embedded-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-environments-api
+  name: MindCloud Environments API
+  description: The environments API from MindCloud — 1 operation(s) for environments.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - environments
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-environments-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-me-api
+  name: MindCloud Me API
+  description: The me API from MindCloud — 1 operation(s) for me.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - me
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-me-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-members-api
+  name: MindCloud Members API
+  description: The members API from MindCloud — 2 operation(s) for members.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - members
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-members-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-meta-api
+  name: MindCloud Meta API
+  description: The meta API from MindCloud — 1 operation(s) for meta.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - meta
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-meta-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-roles-api
+  name: MindCloud Roles API
+  description: The roles API from MindCloud — 2 operation(s) for roles.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - roles
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-roles-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-runs-api
+  name: MindCloud Runs API
+  description: The runs API from MindCloud — 5 operation(s) for runs.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - runs
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-runs-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-universal-api
+  name: MindCloud Universal API
+  description: The universal API from MindCloud — 5 operation(s) for universal.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - universal
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-universal-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-usage-api
+  name: MindCloud Usage API
+  description: The usage API from MindCloud — 3 operation(s) for usage.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - usage
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-usage-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+- aid: mindcloud:mindcloud-workflows-api
+  name: MindCloud Workflows API
+  description: The workflows API from MindCloud — 6 operation(s) for workflows.
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://connect.mindcloud.co/v2
+  tags:
+  - workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-workflows-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
 x-coverage:
   state: gated
   reason: partner-login
   method: derived
-  generated: '2026-10-20'
+  generated: '2026-10-21'
   generator: derive-coverage.py (pre-flight evidence)
-  detail: the company serves an API surface but requires credentials before any description of it can be read
+  detail: >-
+    the company serves an API surface but requires credentials before any description of it can be read
   evidence:
   - url: https://mindcloud.co/openapi.json
     status: null
   - url: https://connect.mindcloud.co/v1/openapi.json
     status: null
-  - url: https://new.mindcloud.co/openapi.json
-    status: null
   - url: https://connect.mindcloud.co/mcp
     status: 401
   - url: https://mindcloud.co/
     status: 200
+x-enrichment:
+  date: '2026-10-21'
+  status: enriched
+  artifacts_added: 2
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,14 +1,12 @@
-generated: '2026-10-20'
+generated: '2026-10-21'
 method: derived
 generator: derive-vocabulary.py
-source:
-- openapi/connect-mindcloud-openapi.json
-- openapi/mindcloud-openapi.json
+source: openapi/connect-mindcloud-openapi.json
 vocabulary:
   name: MindCloud Domain Vocabulary
   description: 'Terms declared by MindCloud''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
     Derived, not authored.'
-  version: '2026-10-20'
+  version: '2026-10-21'
   terms:
   - term: ErrorResponse
     definition: 'Object declared by the contract with fields: success, error.'

@@ -1,0 +1,16 @@
+generated: '2026-10-21'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://mindcloud.co/changelog
+sources:
+- https://mindcloud.co/changelog
+- https://mindcloud.co/docs/cirra/cirra-getting-started/what-is-cirra
+- https://mindcloud.co/docs/universal/rest/home/latest/introduction/quickstart
+- https://mindcloud.co/docs/cirra/cirra-getting-started/what-is-cirra
+versioning:
+  scheme: semantic
+  current: V2
+deprecation:
+  policy: V1 is frozen and deprecated for new development; new integrations should use V2.
+status_page: null
+docs: https://mindcloud.co/changelog

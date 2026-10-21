@@ -4,8 +4,9 @@
   "type": "MCPServer",
   "source": "derived",
   "deployment": {
-    "mode": "none",
+    "mode": "remote",
+    "endpoint": "https://connect.mindcloud.co/mcp",
     "auth": "none",
-    "verified": "derived"
+    "verified": "probed"
   }
 }

@@ -1,0 +1,1290 @@
+openapi: 3.2.0
+info:
+  title: MindCloud Public Universal API
+  version: 2.0.0
+  description: REST surface under /v2. Authenticate with a company-scoped API key sent as a bearer token. Each key holds a set of permissions; each operation lists the ones it requires as the apiKey security roles. A request may use a permission only while the user who created the key also holds it.
+servers:
+- url: https://connect.mindcloud.co
+security:
+- apiKey: []
+tags:
+- name: universal
+paths:
+  /v2/universal/apps:
+    get:
+      operationId: v2-list-universal-apps
+      summary: List published Universal API apps that have executable actions
+      description: 'List published Universal API apps that have executable actions. With actionQ, meta.suggestedAction names the one action that clearly matches it.
+
+
+        Each filterable field is also a query parameter: `status=active` matches it exactly, and bracket operators (eq, ne, gt, gte, lt, lte, contains, starts, ends, in, nin) compare, e.g. `createdOn[gte]=2026-01-01` or `status[in]=failed,cancelled`. contains, starts, and ends apply to text fields only.
+
+
+        Requires no API key permission.'
+      tags:
+      - universal
+      security:
+      - apiKey: []
+      parameters:
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Comma-separated fields to return; all of them when left out, and id always. Each item then carries only those keys, whatever its schema requires. Fields: id, name, slug, icon, category, type, aliases, publishedVersion, actionsTotal, actionSlugsPreview.'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Comma-separated sort fields; prefix one with - for descending. Sortable fields: id, name, slug, icon, category, type, publishedVersion, actionsTotal. Without sort, results keep the order the list reads them in.'
+      - name: where
+        in: query
+        required: false
+        schema:
+          type: string
+          maxLength: 2048
+        description: 'RSQL filter expression. Filterable fields: id, name, slug, icon, category, type, publishedVersion, actionsTotal. Operators: ==, !=, >, >=, <, <=, =in=, =out=, =like=. Logical: ; (AND), , (OR); AND binds tighter than OR. Example: "status==active;name=like=Sales*"'
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on id: `id=value` matches it exactly. Bracket operators: `id[ne]`, `id[gt]`, `id[gte]`, `id[lt]`, `id[lte]`, `id[contains]`, `id[starts]`, `id[ends]`, and `id[in]` / `id[nin]` with comma-separated values.'
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on name: `name=value` matches it exactly. Bracket operators: `name[ne]`, `name[gt]`, `name[gte]`, `name[lt]`, `name[lte]`, `name[contains]`, `name[starts]`, `name[ends]`, and `name[in]` / `name[nin]` with comma-separated values.'
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on slug: `slug=value` matches it exactly. Bracket operators: `slug[ne]`, `slug[gt]`, `slug[gte]`, `slug[lt]`, `slug[lte]`, `slug[contains]`, `slug[starts]`, `slug[ends]`, and `slug[in]` / `slug[nin]` with comma-separated values.'
+      - name: icon
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on icon: `icon=value` matches it exactly. Bracket operators: `icon[ne]`, `icon[gt]`, `icon[gte]`, `icon[lt]`, `icon[lte]`, `icon[contains]`, `icon[starts]`, `icon[ends]`, and `icon[in]` / `icon[nin]` with comma-separated values.'
+      - name: category
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on category: `category=value` matches it exactly. Bracket operators: `category[ne]`, `category[gt]`, `category[gte]`, `category[lt]`, `category[lte]`, `category[contains]`, `category[starts]`, `category[ends]`, and `category[in]` / `category[nin]` with comma-separated values.'
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on type: `type=value` matches it exactly. Bracket operators: `type[ne]`, `type[gt]`, `type[gte]`, `type[lt]`, `type[lte]`, `type[contains]`, `type[starts]`, `type[ends]`, and `type[in]` / `type[nin]` with comma-separated values.'
+      - name: publishedVersion
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on publishedVersion: `publishedVersion=value` matches it exactly. Bracket operators: `publishedVersion[ne]`, `publishedVersion[gt]`, `publishedVersion[gte]`, `publishedVersion[lt]`, `publishedVersion[lte]`, `publishedVersion[contains]`, `publishedVersion[starts]`, `publishedVersion[ends]`, and `publishedVersion[in]` / `publishedVersion[nin]` with comma-separated values.'
+      - name: actionsTotal
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: 'Filter on actionsTotal: `actionsTotal=value` matches it exactly. Bracket operators: `actionsTotal[ne]`, `actionsTotal[gt]`, `actionsTotal[gte]`, `actionsTotal[lt]`, `actionsTotal[lte]`, and `actionsTotal[in]` / `actionsTotal[nin]` with comma-separated values.'
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional app search text matched against name, slug, category, type, and aliases.
+      - name: actionQ
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional action intent search text. When there is one clear deterministic match, meta.suggestedAction names it without using AI.
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UniversalApp'
+                  meta:
+                    $ref: '#/components/schemas/ListMeta'
+                required:
+                - success
+                - data
+                - meta
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/universal/apps/{appSlug}/actions:
+    get:
+      operationId: v2-list-universal-actions
+      summary: List published Universal API actions with the appSlug, appVersion, and…
+      description: 'List published Universal API actions with the appSlug, appVersion, and actionSlug needed to run them.
+
+
+        Each filterable field is also a query parameter: `status=active` matches it exactly, and bracket operators (eq, ne, gt, gte, lt, lte, contains, starts, ends, in, nin) compare, e.g. `createdOn[gte]=2026-01-01` or `status[in]=failed,cancelled`. contains, starts, and ends apply to text fields only.
+
+
+        Requires no API key permission.'
+      tags:
+      - universal
+      security:
+      - apiKey: []
+      parameters:
+      - name: appSlug
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Comma-separated fields to return; all of them when left out, and id always. Each item then carries only those keys, whatever its schema requires. Fields: id, appSlug, appVersion, actionSlug, name, method, operation, supports, queryCapabilities, requiredArguments, optionalArguments, responseFields, slugConflict, appId, appName, description, model, controls, responseSchema, isSchemaDynamic.'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Comma-separated sort fields; prefix one with - for descending. Sortable fields: id, appSlug, appVersion, actionSlug, name, method, operation, slugConflict, appId, appName, description, model, isSchemaDynamic. Without sort, results keep the order the list reads them in.'
+      - name: where
+        in: query
+        required: false
+        schema:
+          type: string
+          maxLength: 2048
+        description: 'RSQL filter expression. Filterable fields: id, appSlug, appVersion, actionSlug, name, method, operation, slugConflict, appId, appName, description, model, isSchemaDynamic. Operators: ==, !=, >, >=, <, <=, =in=, =out=, =like=. Logical: ; (AND), , (OR); AND binds tighter than OR. Example: "status==active;name=like=Sales*"'
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on id: `id=value` matches it exactly. Bracket operators: `id[ne]`, `id[gt]`, `id[gte]`, `id[lt]`, `id[lte]`, `id[contains]`, `id[starts]`, `id[ends]`, and `id[in]` / `id[nin]` with comma-separated values.'
+      - name: appVersion
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on appVersion: `appVersion=value` matches it exactly. Bracket operators: `appVersion[ne]`, `appVersion[gt]`, `appVersion[gte]`, `appVersion[lt]`, `appVersion[lte]`, `appVersion[contains]`, `appVersion[starts]`, `appVersion[ends]`, and `appVersion[in]` / `appVersion[nin]` with comma-separated values.'
+      - name: actionSlug
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on actionSlug: `actionSlug=value` matches it exactly. Bracket operators: `actionSlug[ne]`, `actionSlug[gt]`, `actionSlug[gte]`, `actionSlug[lt]`, `actionSlug[lte]`, `actionSlug[contains]`, `actionSlug[starts]`, `actionSlug[ends]`, and `actionSlug[in]` / `actionSlug[nin]` with comma-separated values.'
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on name: `name=value` matches it exactly. Bracket operators: `name[ne]`, `name[gt]`, `name[gte]`, `name[lt]`, `name[lte]`, `name[contains]`, `name[starts]`, `name[ends]`, and `name[in]` / `name[nin]` with comma-separated values.'
+      - name: method
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on method: `method=value` matches it exactly. Bracket operators: `method[ne]`, `method[gt]`, `method[gte]`, `method[lt]`, `method[lte]`, `method[contains]`, `method[starts]`, `method[ends]`, and `method[in]` / `method[nin]` with comma-separated values.'
+      - name: operation
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on operation: `operation=value` matches it exactly. Bracket operators: `operation[ne]`, `operation[gt]`, `operation[gte]`, `operation[lt]`, `operation[lte]`, `operation[contains]`, `operation[starts]`, `operation[ends]`, and `operation[in]` / `operation[nin]` with comma-separated values.'
+      - name: slugConflict
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: 'Filter on slugConflict: `slugConflict=value` matches it exactly. Bracket operators: `slugConflict[ne]`, `slugConflict[gt]`, `slugConflict[gte]`, `slugConflict[lt]`, `slugConflict[lte]`, and `slugConflict[in]` / `slugConflict[nin]` with comma-separated values.'
+      - name: appId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on appId: `appId=value` matches it exactly. Bracket operators: `appId[ne]`, `appId[gt]`, `appId[gte]`, `appId[lt]`, `appId[lte]`, `appId[contains]`, `appId[starts]`, `appId[ends]`, and `appId[in]` / `appId[nin]` with comma-separated values.'
+      - name: appName
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on appName: `appName=value` matches it exactly. Bracket operators: `appName[ne]`, `appName[gt]`, `appName[gte]`, `appName[lt]`, `appName[lte]`, `appName[contains]`, `appName[starts]`, `appName[ends]`, and `appName[in]` / `appName[nin]` with comma-separated values.'
+      - name: description
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on description: `description=value` matches it exactly. Bracket operators: `description[ne]`, `description[gt]`, `description[gte]`, `description[lt]`, `description[lte]`, `description[contains]`, `description[starts]`, `description[ends]`, and `description[in]` / `description[nin]` with comma-separated values.'
+      - name: model
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 'Filter on model: `model=value` matches it exactly. Bracket operators: `model[ne]`, `model[gt]`, `model[gte]`, `model[lt]`, `model[lte]`, `model[contains]`, `model[starts]`, `model[ends]`, and `model[in]` / `model[nin]` with comma-separated values.'
+      - name: isSchemaDynamic
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: 'Filter on isSchemaDynamic: `isSchemaDynamic=value` matches it exactly. Bracket operators: `isSchemaDynamic[ne]`, `isSchemaDynamic[gt]`, `isSchemaDynamic[gte]`, `isSchemaDynamic[lt]`, `isSchemaDynamic[lte]`, and `isSchemaDynamic[in]` / `isSchemaDynamic[nin]` with comma-separated values.'
+      - name: version
+        in: query
+        required: false
+        schema:
+          default: latest
+          type: string
+        description: App version to search. Defaults to latest.
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Optional action search text matched against app, action, description, operation, and model.
+      - name: verbosity
+        in: query
+        required: false
+        schema:
+          default: compact
+          type: string
+          enum:
+          - compact
+          - full
+        description: How much action metadata to return. compact is optimized for agent search; full adds descriptions, the model, controls, and the response schema when available.
+      - name: includeArguments
+        in: query
+        required: false
+        schema:
+          default: required
+          type: string
+          enum:
+          - none
+          - required
+          - all
+        description: How many action argument hints to include. required is the default to support simple one-call execution.
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UniversalAction'
+                  meta:
+                    $ref: '#/components/schemas/ListMeta'
+                required:
+                - success
+                - data
+                - meta
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/universal/apps/{appSlug}/actions/{actionSlug}:
+    get:
+      operationId: v2-get-universal-action
+      summary: Get detailed argument and response schema metadata for one Universal API action
+      description: 'Get detailed argument and response schema metadata for one Universal API action.
+
+
+        Requires no API key permission.'
+      tags:
+      - universal
+      security:
+      - apiKey: []
+      parameters:
+      - name: appSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          description: The app slug, for example "slack".
+      - name: actionSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          description: The docs-style action slug, for example "send-message".
+      - name: version
+        in: query
+        required: false
+        schema:
+          default: latest
+          description: The app version to inspect. Defaults to latest.
+          type: string
+      - name: fields
+        in: query
+        required: false
+        schema:
+          description: Comma-separated fields to select from the action schema response.
+          type: string
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/UniversalActionDetail'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        '400':
+          description: Invalid query parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Universal action not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Universal action slug conflict.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/universal/apps/{appSlug}/actions/{actionSlug}/lookups/{argumentKey}:
+    get:
+      operationId: v2-resolve-universal-lookup
+      summary: Resolve a Universal API lookup/list argument to the canonical API value without…
+      description: 'Resolve a Universal API lookup/list argument to the canonical API value without using AI.
+
+
+        Requires the API key permission universal:read.'
+      tags:
+      - universal
+      security:
+      - apiKey:
+        - universal:read
+      parameters:
+      - name: appSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          description: The app slug, for example "slack".
+      - name: actionSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          description: The docs-style action slug, for example "send-message".
+      - name: argumentKey
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          description: The lookup-backed argument key to resolve.
+      - name: version
+        in: query
+        required: false
+        schema:
+          default: latest
+          description: The app version to inspect. Defaults to latest.
+          type: string
+      - name: q
+        in: query
+        required: false
+        schema:
+          description: Search text to resolve, for example a channel, user, customer, or project name.
+          type: string
+      - name: connectionId
+        in: query
+        required: false
+        schema:
+          description: The public MindCloud connection ID to use when the lookup source requires authentication.
+          type: string
+          minLength: 1
+      - name: endUserId
+        in: query
+        required: false
+        schema:
+          description: Use only connections owned by this embedded end user. The API key company must own the end user.
+          type: string
+          minLength: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          default: 50
+          description: Maximum lookup rows to request from the source action (1-200, default 50).
+          type: integer
+          minimum: 1
+          maximum: 200
+      - name: offset
+        in: query
+        required: false
+        schema:
+          default: 0
+          description: Lookup row offset when supported by the source action.
+          type: integer
+          minimum: 0
+          maximum: 9007199254740991
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/UniversalLookup'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        '400':
+          description: Invalid query or connection selection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Embedded access is disabled, the API key company scope does not match, or an Embedded end user, or a connection one owns, was selected under X-Company-Id (CHILD_SCOPE_FORBIDDEN, COMPANY_SCOPE_MISMATCH).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Action, lookup, or connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: UNIVERSAL_ACTION_SLUG_CONFLICT or CONNECTION_CHOICE_REQUIRED. Multiple usable end-user accounts require a public connectionId; error.details.candidates lists them.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UniversalConflictErrorResponse'
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: MindCloud could not run the lookup action (INTERNAL_ERROR).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: The provider answered the lookup action with a failure (PROVIDER_ERROR). error.details.reason is the provider's code and error.details.provider.status its HTTP status. MindCloud's own refusals answer 400, 403, 404, or 409 instead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Embedded scope or connection storage is temporarily unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/universal/apps/{appSlug}/actions/{actionSlug}/run:
+    post:
+      operationId: v2-run-universal-action
+      summary: Run one Universal API action using a company connection, an embedded…
+      description: 'Run one Universal API action using a company connection, an embedded installation, or a connected account owned by an embedded end user.
+
+
+        Requires the Universal permission for the action''s declared operation: universal:read, universal:create, universal:update, or universal:delete (all four when the action declares none).'
+      tags:
+      - universal
+      security:
+      - apiKey: []
+      parameters:
+      - name: appSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+      - name: actionSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+      - $ref: '#/components/parameters/CompanyId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                arguments:
+                  type: object
+                  propertyNames:
+                    type: string
+                  additionalProperties: {}
+                version:
+                  default: latest
+                  type: string
+                connectionId:
+                  type: string
+                  minLength: 1
+                installationId:
+                  type: string
+                  minLength: 1
+                endUserId:
+                  type: string
+                  minLength: 1
+                options:
+                  type: object
+                  propertyNames:
+                    type: string
+                  additionalProperties: {}
+                fields:
+                  type: string
+                limit:
+                  anyOf:
+                  - type: string
+                  - type: number
+                offset:
+                  anyOf:
+                  - type: string
+                  - type: number
+                sort:
+                  type: string
+                where:
+                  type: string
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/UniversalActionResult'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        '400':
+          description: Invalid request or connection selection (including installations whose end user has not connected the app).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Embedded access is disabled, the API key company scope does not match, or an Embedded end user or installation, or a connection one owns, was selected under X-Company-Id (CHILD_SCOPE_FORBIDDEN, COMPANY_SCOPE_MISMATCH).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Universal action, connection, or installation not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: UNIVERSAL_ACTION_SLUG_CONFLICT or CONNECTION_CHOICE_REQUIRED. Multiple usable end-user accounts require a public connectionId; error.details.candidates lists them.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UniversalConflictErrorResponse'
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: MindCloud could not run the action (INTERNAL_ERROR, for example UNEXPECTED_ERROR).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: The provider answered with a failure (PROVIDER_ERROR). error.details.reason is the provider's code and error.details.provider.status its HTTP status. MindCloud's own refusals before the provider call answer 400, 403, 404, or 409 instead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Embedded scope or connection storage is temporarily unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    UniversalActionResult:
+      description: The provider's response for the action, shaped by its published definition and the fields, limit, offset, sort, and where controls. meta carries the provider's paging cursor, pagination, output, action, and message when it sends them.
+    UniversalConflictErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              const: CONFLICT
+            message:
+              type: string
+            details:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  examples:
+                  - UNIVERSAL_ACTION_SLUG_CONFLICT
+                  - CONNECTION_CHOICE_REQUIRED
+                candidates:
+                  type: array
+                  description: Present for CONNECTION_CHOICE_REQUIRED. Pass one id as connectionId and retry.
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      label:
+                        type: string
+                      status:
+                        type: string
+                    required:
+                    - id
+                    - label
+                    - status
+              required:
+              - reason
+          required:
+          - code
+          - message
+          - details
+      required:
+      - success
+      - error
+    UniversalAction:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique id of the action.
+        appSlug:
+          type:
+          - string
+          - 'null'
+          description: The app slug used in Universal API routes.
+        appVersion:
+          type:
+          - string
+          - 'null'
+          description: The resolved published app version.
+        actionSlug:
+          type:
+          - string
+          - 'null'
+          description: The action slug used in Universal API routes.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The action's display name.
+        method:
+          type:
+          - string
+          - 'null'
+          description: The provider method selected by the action definition.
+        operation:
+          type:
+          - string
+          - 'null'
+          description: The action operation, such as read or create.
+        supports:
+          type:
+          - object
+          - 'null'
+          description: The response controls supported by this action.
+        queryCapabilities:
+          type:
+          - object
+          - 'null'
+          description: Limits and paging capabilities for this action.
+        requiredArguments:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+          description: Arguments the action requires.
+        optionalArguments:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+          description: Arguments the action accepts but does not require, with includeArguments=all.
+        responseFields:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Field keys the action can return.
+        slugConflict:
+          type:
+          - boolean
+          - 'null'
+          description: True when more than one action resolves to this slug.
+        appId:
+          type:
+          - string
+          - 'null'
+          description: The app that provides this action. verbosity=full only.
+        appName:
+          type:
+          - string
+          - 'null'
+          description: The app's display name. verbosity=full only.
+        description:
+          type:
+          - string
+          - 'null'
+          description: What the action does. verbosity=full only.
+        model:
+          type:
+          - string
+          - 'null'
+          description: The provider model this action uses. verbosity=full only.
+        controls:
+          type:
+          - object
+          - 'null'
+          description: Response controls and their defaults. verbosity=full only.
+        responseSchema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+          description: Definitions for fields the action can return. verbosity=full only.
+        isSchemaDynamic:
+          type:
+          - boolean
+          - 'null'
+          description: True when the provider determines the response schema at run time. verbosity=full only.
+      required:
+      - id
+      - appSlug
+      - appVersion
+      - actionSlug
+      - name
+      - operation
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: 'Fixed by the status: 400 VALIDATION_FAILED, 401 UNAUTHORIZED, 403 FORBIDDEN, 404 NOT_FOUND, 409 CONFLICT, 410 GONE, 413 PAYLOAD_TOO_LARGE, 421 and 503 UNAVAILABLE, 429 RATE_LIMITED, 500 INTERNAL_ERROR, 502 PROVIDER_ERROR.'
+              examples:
+              - VALIDATION_FAILED
+              - UNAUTHORIZED
+              - FORBIDDEN
+              - NOT_FOUND
+              - CONFLICT
+              - GONE
+              - PAYLOAD_TOO_LARGE
+              - RATE_LIMITED
+              - INTERNAL_ERROR
+              - PROVIDER_ERROR
+              - UNAVAILABLE
+            message:
+              type: string
+            details:
+              type: object
+              description: The specific cause (reason) and any evidence for it. Absent when the code says everything.
+              properties:
+                reason:
+                  type: string
+                  description: The specific cause, for example UNKNOWN_FILTER_FIELD or CONNECTION_IN_USE.
+                field:
+                  type: string
+                  description: The parameter, filter, sort, or body field a 400 refused.
+                accepted:
+                  type: array
+                  items: {}
+                  description: 'What a 400 would have accepted instead: parameter names, field names, or enum values.'
+                provider:
+                  type: object
+                  description: 'On 502 PROVIDER_ERROR: the provider answer that failed.'
+                  properties:
+                    status:
+                      type: integer
+                      description: The provider's HTTP status.
+                    code:
+                      type: string
+                      description: The provider's own error code, when it sends one.
+          required:
+          - code
+          - message
+      required:
+      - success
+      - error
+    ListMeta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: Matching records. A list read in SQL stops counting at 10000.
+            totalCountExact:
+              type: boolean
+              description: False when totalCount stopped at that cap.
+            hasNextPage:
+              type: boolean
+              description: True when another page follows. Page with this, not totalCount.
+            hasPreviousPage:
+              type: boolean
+          required:
+          - totalCount
+          - totalCountExact
+          - hasNextPage
+          - hasPreviousPage
+      required:
+      - pagination
+    UniversalApp:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique id of the app.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The app's display name.
+        slug:
+          type:
+          - string
+          - 'null'
+          description: The app slug used in Universal API routes.
+        icon:
+          type:
+          - string
+          - 'null'
+          description: The app's icon URL.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The app's category.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The app's integration type.
+        aliases:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Other names that can find this app.
+        publishedVersion:
+          type:
+          - string
+          - 'null'
+          description: The app's current published version.
+        actionsTotal:
+          type:
+          - integer
+          - 'null'
+          description: How many published actions this app provides.
+        actionSlugsPreview:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: A preview of action slugs available for this app.
+      required:
+      - id
+      - name
+      - slug
+      - icon
+      - category
+      - type
+      - aliases
+      - publishedVersion
+      - actionsTotal
+      - actionSlugsPreview
+    UniversalActionDetail:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique id of the action.
+        appId:
+          type:
+          - string
+          - 'null'
+          description: The app that provides this action.
+        appSlug:
+          type:
+          - string
+          - 'null'
+          description: The app slug used in Universal API routes.
+        appName:
+          type:
+          - string
+          - 'null'
+          description: The app's display name.
+        appVersion:
+          type:
+          - string
+          - 'null'
+          description: The resolved published app version.
+        actionSlug:
+          type:
+          - string
+          - 'null'
+          description: The action slug used in Universal API routes.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The action's display name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: What the action does.
+        method:
+          type:
+          - string
+          - 'null'
+          description: The provider method selected by the action definition.
+        operation:
+          type:
+          - string
+          - 'null'
+          description: The action operation, such as read or create.
+        model:
+          type:
+          - string
+          - 'null'
+          description: The provider model this action uses.
+        supports:
+          type:
+          - object
+          - 'null'
+          description: The response controls supported by this action.
+        queryCapabilities:
+          type:
+          - object
+          - 'null'
+          description: Limits and paging capabilities for this action.
+        requiredArguments:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+          description: Arguments the action requires.
+        optionalArguments:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+          description: Arguments the action accepts but does not require.
+        responseFields:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Field keys the action can return.
+        responseSchema:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+          description: Definitions for fields the action can return.
+        controls:
+          type:
+          - object
+          - 'null'
+          description: Response controls and their defaults.
+        isSchemaDynamic:
+          type:
+          - boolean
+          - 'null'
+          description: True when the provider determines the response schema at run time.
+      required:
+      - id
+      - appSlug
+      - appVersion
+      - actionSlug
+      - name
+      - operation
+    UniversalLookup:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - resolved
+          - ambiguous
+          - notFound
+          description: 'Whether the lookup resolved or needs more input: resolved, ambiguous, or notFound.'
+        reasonCode:
+          type: string
+          description: 'A stable reason code: EXACT_MATCH, STRONG_MATCH, MULTIPLE_HIGH_CONFIDENCE_CANDIDATES, INSUFFICIENT_CONFIDENCE, or NO_CANDIDATES.'
+        selected:
+          type: object
+          properties:
+            value:
+              type:
+              - string
+              - 'null'
+              description: The canonical value to pass as the argument.
+            label:
+              type:
+              - string
+              - 'null'
+              description: What the option is called.
+          description: The selected lookup option, when one exact match exists.
+        candidates:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type:
+                - string
+                - 'null'
+                description: The canonical value to pass as the argument.
+              label:
+                type:
+                - string
+                - 'null'
+                description: What the option is called.
+          description: Matching options the caller can choose from.
+        source:
+          type: string
+          enum:
+          - fixedOptions
+          - lookupAction
+          description: 'Where the choices came from: fixedOptions (the argument''s own list) or lookupAction (a provider read).'
+        lookup:
+          type: object
+          properties:
+            labelKey:
+              type:
+              - string
+              - 'null'
+              description: The source field shown as the option label.
+            valueKey:
+              type:
+              - string
+              - 'null'
+              description: The source field passed as the argument value.
+            actionId:
+              type:
+              - string
+              - 'null'
+              description: The action that lists the options, or null for fixed options.
+          description: The lookup definition for this argument.
+        paging:
+          type: object
+          properties:
+            limit:
+              type:
+              - integer
+              - 'null'
+              description: The limit the source was asked for.
+            offset:
+              type:
+              - integer
+              - 'null'
+              description: The offset the source was asked for.
+            fetchedCandidatesCount:
+              type:
+              - integer
+              - 'null'
+              description: How many options the source answered.
+          description: Offset paging details for the candidates.
+        hints:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type:
+                - string
+                - 'null'
+                description: NO_CANDIDATES, or the reasonCode that needs a choice.
+              message:
+                type:
+                - string
+                - 'null'
+                description: What to do next.
+          description: Instructions for the caller when more input is needed.
+      required:
+      - status
+      - reasonCode
+      - source
+      - lookup
+      - paging
+      - hints
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination (default 0).
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: Maximum number of results to return (1-1000, default 100).
+    CompanyId:
+      name: X-Company-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      example: K3vX9qLm2RtA
+      description: Optional. The id of a child organization of your API key's company to act on. Leave it out to act on the key's own company. See [Child organizations](https://mindcloud.co/docs/api/rest/introduction/child-organizations).
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: 'Company-scoped MindCloud API key sent as `Authorization: Bearer <key>`. Each key holds permissions from the MindCloud roles catalog (workflow:view, workflow:run, universal:read, api_key:manage, ...), chosen when it is created; each operation lists the ones it requires as this scheme''s roles. A request may use a permission only while the user who created the key still holds it in the company the request acts on; a missing one answers 403 with details.reason API_KEY_PERMISSION_DENIED and details.required, and a key whose creator left the organization answers API_KEY_CREATOR_INACTIVE. The key''s accessLevel (full_access, run_workflows, read_only, or none) summarizes its permissions. Create a key at https://app.mindcloud.co/user/api-keys.'

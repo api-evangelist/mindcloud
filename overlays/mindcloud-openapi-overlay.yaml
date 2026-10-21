@@ -1,0 +1,7 @@
+generated: "2026-10-20"
+method: derived
+type: OpenAPIOverlay
+source: openapi/mindcloud-openapi.json
+overlay:
+  version: "1.0.0"
+  actions: []

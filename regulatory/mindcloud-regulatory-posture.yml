@@ -1,45 +1,46 @@
 generated: '2026-10-20'
 method: probed
+source: https://mindcloud.co/privacy-policy
 signals:
   data_retention:
     evidence:
-      source: https://mindcloud.co/privacy-policy
-      http_status: 200
-      fetched: true
-      quote: "We retain personal information only for as long as necessary to: Provide the Services; Maintain user accounts; Comply with legal obligations; Resolve disputes and enforce agreements. When personal information is no longer required, it is securely deleted or anonymized."
+      - source: https://mindcloud.co/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "We retain personal information only for as long as necessary to: Provide the Services; Maintain user accounts; Comply with legal obligations; Resolve disputes and enforce agreements. When personal information is no longer required, it is securely deleted or anonymized."
     note: Retains data only as needed and deletes/anonymizes thereafter.
   data_subject_request:
     evidence:
-      source: https://mindcloud.co/privacy-policy
-      http_status: 200
-      fetched: true
-      quote: "You may request deletion of personal data by contacting privacy@mindcloud.co. You may also request a copy of your data (data portability), access, correction, restriction, objection, and withdraw consent."
+      - source: https://mindcloud.co/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "You may request deletion of personal data by contacting privacy@mindcloud.co. You may also request a copy of your data (data portability), access, correction, restriction, objection, and withdraw consent."
     note: Provides rights for access, correction, deletion, portability, etc.
   subprocessors:
     evidence:
-      source: https://mindcloud.co/privacy-policy
-      http_status: 200
-      fetched: true
-      quote: "We may share limited information with trusted third‑party providers that assist us in operating the platform, including providers of cloud hosting infrastructure, analytics services, security monitoring, and customer support systems. These providers are contractually required to protect personal information and may only process data on our behalf."
+      - source: https://mindcloud.co/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "We may share limited information with trusted third‑party providers that assist us in operating the platform, including providers of cloud hosting infrastructure, analytics services, security monitoring, and customer support systems. These providers are contractually required to protect personal information and may only process data on our behalf."
     note: Discloses use of service providers as subprocessors.
   ai_transparency:
     evidence:
-      source: https://mindcloud.co/privacy-policy
-      http_status: 200
-      fetched: true
-      quote: "MindCloud does not use Google Workspace API data to develop, improve, or train generalized artificial intelligence or machine learning models."
+      - source: https://mindcloud.co/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "MindCloud does not use Google Workspace API data to develop, improve, or train generalized artificial intelligence or machine learning models."
     note: Explicitly states data is not used to train AI models.
   data_residency:
     evidence:
-      source: https://mindcloud.co/privacy-policy
-      http_status: 200
-      fetched: true
-      quote: "MindCloud is based in the United States. Personal information may be transferred to and processed in countries outside your jurisdiction. Where required by law, we implement appropriate safeguards for such transfers, including contractual protections such as Standard Contractual Clauses."
+      - source: https://mindcloud.co/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "MindCloud is based in the United States. Personal information may be transferred to and processed in countries outside your jurisdiction. Where required by law, we implement appropriate safeguards for such transfers, including contractual protections such as Standard Contractual Clauses."
     note: Indicates cross‑border data transfers with safeguards.
   incident_notification:
     evidence:
-      source: https://mindcloud.co/privacy-policy
-      http_status: 200
-      fetched: true
-      quote: "We implement administrative, technical, and organizational safeguards designed to protect personal information from unauthorized access, disclosure, alteration, or destruction. However, no system can guarantee absolute security."
+      - source: https://mindcloud.co/privacy-policy
+        http_status: 200
+        fetched: "true"
+        quote: "We implement administrative, technical, and organizational safeguards designed to protect personal information from unauthorized access, disclosure, alteration, or destruction. However, no system can guarantee absolute security."
     note: Mentions security safeguards but does not specify breach notification procedures.

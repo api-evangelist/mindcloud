@@ -1,0 +1,265 @@
+openapi: 3.2.0
+info:
+  title: MindCloud Public Me API
+  version: 2.0.0
+  description: REST surface under /v2. Authenticate with a company-scoped API key sent as a bearer token. Each key holds a set of permissions; each operation lists the ones it requires as the apiKey security roles. A request may use a permission only while the user who created the key also holds it.
+servers:
+- url: https://connect.mindcloud.co
+security:
+- apiKey: []
+tags:
+- name: Me
+paths:
+  /v2/me:
+    get:
+      operationId: v2-get-me
+      summary: Describe the calling API key, its effective company scope, and which MindCloud…
+      description: 'Describe the calling API key, its effective company scope, and which MindCloud capabilities that company has enabled. Useful to verify credentials.
+
+
+        Requires no API key permission.'
+      tags:
+      - Me
+      security:
+      - apiKey: []
+      parameters:
+      - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Me'
+                  meta:
+                    type: object
+                    description: 'Response metadata, on endpoints that answer it: the usage window, a step count, or the provider paging of a Universal action run.'
+                required:
+                - success
+                - data
+        default:
+          description: Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: 'Fixed by the status: 400 VALIDATION_FAILED, 401 UNAUTHORIZED, 403 FORBIDDEN, 404 NOT_FOUND, 409 CONFLICT, 410 GONE, 413 PAYLOAD_TOO_LARGE, 421 and 503 UNAVAILABLE, 429 RATE_LIMITED, 500 INTERNAL_ERROR, 502 PROVIDER_ERROR.'
+              examples:
+              - VALIDATION_FAILED
+              - UNAUTHORIZED
+              - FORBIDDEN
+              - NOT_FOUND
+              - CONFLICT
+              - GONE
+              - PAYLOAD_TOO_LARGE
+              - RATE_LIMITED
+              - INTERNAL_ERROR
+              - PROVIDER_ERROR
+              - UNAVAILABLE
+            message:
+              type: string
+            details:
+              type: object
+              description: The specific cause (reason) and any evidence for it. Absent when the code says everything.
+              properties:
+                reason:
+                  type: string
+                  description: The specific cause, for example UNKNOWN_FILTER_FIELD or CONNECTION_IN_USE.
+                field:
+                  type: string
+                  description: The parameter, filter, sort, or body field a 400 refused.
+                accepted:
+                  type: array
+                  items: {}
+                  description: 'What a 400 would have accepted instead: parameter names, field names, or enum values.'
+                provider:
+                  type: object
+                  description: 'On 502 PROVIDER_ERROR: the provider answer that failed.'
+                  properties:
+                    status:
+                      type: integer
+                      description: The provider's HTTP status.
+                    code:
+                      type: string
+                      description: The provider's own error code, when it sends one.
+          required:
+          - code
+          - message
+      required:
+      - success
+      - error
+    Me:
+      type: object
+      properties:
+        apiKey:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type:
+              - string
+              - 'null'
+              description: The calling key's id.
+            name:
+              type:
+              - string
+              - 'null'
+              description: The calling key's name.
+            companyId:
+              type:
+              - string
+              - 'null'
+              description: The company the key belongs to.
+            accessLevel:
+              type:
+              - string
+              - 'null'
+              description: The calling key's access level.
+            isAdmin:
+              type:
+              - boolean
+              - 'null'
+              description: Reserved for MindCloud platform keys; false for customer keys.
+            permissions:
+              type: array
+              items:
+                type: string
+              description: The permissions the key holds.
+            effectivePermissions:
+              type: array
+              items:
+                type: string
+              description: 'The permissions this request may use: those the key holds that its creator also holds right now, in the company it acts on. Empty when the creator''s account was removed or they left the organization.'
+          required:
+          - id
+          - name
+          - companyId
+          - accessLevel
+          - isAdmin
+          - permissions
+          - effectivePermissions
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The company your requests will read from.
+        company:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type:
+              - string
+              - 'null'
+              description: The company your requests will read from.
+            name:
+              type:
+              - string
+              - 'null'
+              description: That company's name.
+            embedded:
+              type:
+              - object
+              - 'null'
+              properties:
+                isEnabled:
+                  type:
+                  - boolean
+                  - 'null'
+                  description: True when MindCloud Embedded is enabled for the company, so end users can connect their own accounts.
+              required:
+              - isEnabled
+            parent:
+              type:
+              - object
+              - 'null'
+              properties:
+                id:
+                  type:
+                  - string
+                  - 'null'
+                  description: The id of that company's parent organization, or null when it has none. The parent's keys can act in this company.
+                name:
+                  type:
+                  - string
+                  - 'null'
+                  description: The parent organization's name.
+                origin:
+                  type:
+                  - string
+                  - 'null'
+                  description: 'created or linked: how the company became a child.'
+                linkedOn:
+                  type:
+                  - string
+                  - 'null'
+                  format: date-time
+                  description: When the link started.
+              required:
+              - id
+              - name
+              - origin
+              - linkedOn
+          required:
+          - id
+          - name
+          - embedded
+          - parent
+        delegation:
+          type:
+          - object
+          - 'null'
+          properties:
+            parentCompanyId:
+              type:
+              - string
+              - 'null'
+              description: 'Set when this key belongs to a parent and X-Company-Id named one of its children: the key''s company. Otherwise delegation is null.'
+            childCompanyId:
+              type:
+              - string
+              - 'null'
+              description: The child organization this request acts on.
+          required:
+          - parentCompanyId
+          - childCompanyId
+      required:
+      - apiKey
+      - companyId
+      - company
+      - delegation
+  parameters:
+    CompanyId:
+      name: X-Company-Id
+      in: header
+      required: false
+      schema:
+        type: string
+      example: K3vX9qLm2RtA
+      description: Optional. The id of a child organization of your API key's company to act on. Leave it out to act on the key's own company. See [Child organizations](https://mindcloud.co/docs/api/rest/introduction/child-organizations).
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: 'Company-scoped MindCloud API key sent as `Authorization: Bearer <key>`. Each key holds permissions from the MindCloud roles catalog (workflow:view, workflow:run, universal:read, api_key:manage, ...), chosen when it is created; each operation lists the ones it requires as this scheme''s roles. A request may use a permission only while the user who created the key still holds it in the company the request acts on; a missing one answers 403 with details.reason API_KEY_PERMISSION_DENIED and details.required, and a key whose creator left the organization answers API_KEY_CREATOR_INACTIVE. The key''s accessLevel (full_access, run_workflows, read_only, or none) summarizes its permissions. Create a key at https://app.mindcloud.co/user/api-keys.'

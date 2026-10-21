@@ -1,4 +1,4 @@
-generated: '2026-10-20'
+generated: '2026-10-21'
 method: searched
 generator: extract-docs-artifacts.py (local)
 source: https://mindcloud.co/.well-known/oauth-protected-resource
@@ -9,7 +9,7 @@ sources:
 description: Authentication schemes for MindCloud API
 schemes:
 - type: http-bearer
-  name: Authorization
+  name: API Key
   evidence: 'Every request needs an API key in the Authorization header:'
   location: header
   header: Authorization
