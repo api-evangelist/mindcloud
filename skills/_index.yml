@@ -1,0 +1,29 @@
+generated: '2026-10-20'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/connect-mindcloud-openapi.json
+skills:
+- file: skills/mindcloud-run-universal-action.md
+  name: mindcloud-run-universal-action
+  api: openapi/connect-mindcloud-openapi.json
+  operations:
+  - v2-list-universal-apps
+  - v2-list-universal-actions
+  - v2-get-universal-action
+  - v2-run-universal-action
+- file: skills/mindcloud-manage-connection.md
+  name: mindcloud-manage-connection
+  api: openapi/connect-mindcloud-openapi.json
+  operations:
+  - v2-list-connections
+  - v2-get-connection
+  - v2-test-connection
+  - v2-delete-connection
+- file: skills/mindcloud-manage-members.md
+  name: mindcloud-manage-members
+  api: openapi/connect-mindcloud-openapi.json
+  operations:
+  - v2-invite-member
+  - v2-list-members
+  - v2-update-member
+  - v2-delete-member

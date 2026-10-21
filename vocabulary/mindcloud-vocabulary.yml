@@ -1,0 +1,288 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/connect-mindcloud-openapi.json
+- openapi/mindcloud-openapi.json
+vocabulary:
+  name: MindCloud Domain Vocabulary
+  description: 'Terms declared by MindCloud''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-20'
+  terms:
+  - term: ErrorResponse
+    definition: 'Object declared by the contract with fields: success, error.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ErrorResponse
+  - term: ListMeta
+    definition: 'Object declared by the contract with fields: pagination.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ListMeta
+  - term: ConnectionInUseErrorResponse
+    definition: 'Object declared by the contract with fields: success, error.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ConnectionInUseErrorResponse
+  - term: UniversalConflictErrorResponse
+    definition: 'Object declared by the contract with fields: success, error.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UniversalConflictErrorResponse
+  - term: ApiKey
+    definition: 'Object declared by the contract with fields: id, name, accessLevel, permissions, key, createdOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ApiKey
+  - term: ApiKeySummary
+    definition: 'Object declared by the contract with fields: id, name, accessLevel, permissions, usedOn, revokedOn, createdOn, createdBy, updatedOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ApiKeySummary
+  - term: ChildCompany
+    definition: 'Object declared by the contract with fields: id, name, description, origin, linkedOn, memberCount, ownerCount.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ChildCompany
+  - term: Company
+    definition: 'Object declared by the contract with fields: id, name, description, timezone, plan, memberCount, isPersonal, isDeleted, subscriptionIsLegacy,
+      subscriptionUpdatedOn, createdOn, updatedOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Company
+  - term: CompanyProfile
+    definition: 'Object declared by the contract with fields: id, name, description, isPersonal, timezone, isDeleted, createdOn, updatedOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/CompanyProfile
+  - term: ConnectLink
+    definition: 'Object declared by the contract with fields: url, appName, expiresOn, singleUse.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ConnectLink
+  - term: Connection
+    definition: 'Object declared by the contract with fields: id, appId, status, isCompany, endUserId, installationId, userId, testedOn, expiresOn,
+      authenticatedOn, createdOn, createdBy. (1 more)'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Connection
+  - term: ConnectionTestResult
+    definition: 'Object declared by the contract with fields: supported, status, testedOn, message.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/ConnectionTestResult
+  - term: DailyUsage
+    definition: 'Object declared by the contract with fields: date, tasks.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/DailyUsage
+  - term: DeletedResource
+    definition: 'Object declared by the contract with fields: id.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/DeletedResource
+  - term: EmbeddedConnection
+    definition: 'Object declared by the contract with fields: id, appSlug, appName, label, status, connectedOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/EmbeddedConnection
+  - term: Environment
+    definition: 'Object declared by the contract with fields: id, name, isDefault, workflowCount, createdOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Environment
+  - term: Me
+    definition: 'Object declared by the contract with fields: apiKey, companyId, company, delegation.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Me
+  - term: Member
+    definition: 'Object declared by the contract with fields: userId, name, email, isPending, roleId, roleName, createdOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Member
+  - term: QueuedRun
+    definition: 'Object declared by the contract with fields: id, workflowId, status, version, environmentId.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/QueuedRun
+  - term: Role
+    definition: 'Object declared by the contract with fields: id, name, description, isAdmin, isGlobal, createdOn, permissions.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Role
+  - term: RoleSummary
+    definition: 'Object declared by the contract with fields: id, name, description, isAdmin, isGlobal, createdOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/RoleSummary
+  - term: Run
+    definition: 'Object declared by the contract with fields: id, workflowId, status, version, environmentId, environmentName, startedOn, finishedOn,
+      durationMs, operations, errorCount, warningCount. (4 more)'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Run
+  - term: RunCancellation
+    definition: 'Object declared by the contract with fields: id, status.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/RunCancellation
+  - term: RunDetail
+    definition: 'Object declared by the contract with fields: id, workflowId, status, version, environmentId, environmentName, startedOn, finishedOn,
+      durationMs, operations, errorCount, warningCount. (7 more)'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/RunDetail
+  - term: RunOperation
+    definition: 'Object declared by the contract with fields: id, workflowLogId, stepId, stepInstanceId, actionId, appId, model, operation, actionStatus,
+      primaryKey, message, createdOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/RunOperation
+  - term: RunStep
+    definition: 'Object declared by the contract with fields: stepInstanceId, stepId, actionId, success, ran, path.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/RunStep
+  - term: RunStepDetail
+    definition: 'Object declared by the contract with fields: stepInstanceId, stepId, actionId, success, ran, request, response.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/RunStepDetail
+  - term: UniversalAction
+    definition: 'Object declared by the contract with fields: id, appSlug, appVersion, actionSlug, name, method, operation, supports, queryCapabilities,
+      requiredArguments, optionalArguments, responseFields. (8 more)'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UniversalAction
+  - term: UniversalActionDetail
+    definition: 'Object declared by the contract with fields: id, appId, appSlug, appName, appVersion, actionSlug, name, description, method,
+      operation, model, supports. (7 more)'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UniversalActionDetail
+  - term: UniversalActionResult
+    definition: The provider's response for the action, shaped by its published definition and the fields, limit, offset, sort, and where controls.
+      meta carries the provider's paging cursor, pagination, output, action, and message when it sends them.
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UniversalActionResult
+  - term: UniversalApp
+    definition: 'Object declared by the contract with fields: id, name, slug, icon, category, type, aliases, publishedVersion, actionsTotal, actionSlugsPreview.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UniversalApp
+  - term: UniversalLookup
+    definition: 'Object declared by the contract with fields: status, reasonCode, selected, candidates, source, lookup, paging, hints.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UniversalLookup
+  - term: UsageSummary
+    definition: 'Object declared by the contract with fields: periodStart, periodEnd, usedTasks, taskLimit, softLimitEnabled.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/UsageSummary
+  - term: Workflow
+    definition: 'Object declared by the contract with fields: id, name, type, isActive, isTemplate, size, tags, createdOn, createdBy, updatedOn,
+      updatedBy.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/Workflow
+  - term: WorkflowDetail
+    definition: 'Object declared by the contract with fields: id, name, type, isActive, isTemplate, size, tags, createdOn, createdBy, updatedOn,
+      updatedBy, workflow. (1 more)'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/WorkflowDetail
+  - term: WorkflowUsage
+    definition: 'Object declared by the contract with fields: workflowId, name, tasks, installations.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/WorkflowUsage
+  - term: WorkflowVersion
+    definition: 'Object declared by the contract with fields: version, isPublished, createdOn.'
+    tags:
+    - Object
+    source: openapi/connect-mindcloud-openapi.json#/components/schemas/WorkflowVersion
+  - term: workflows
+    definition: 'Resource group in the contract; its operation GET /v2/workflows: List workflows for the company with filtering, sorting, and
+      pagination.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: runs
+    definition: 'Resource group in the contract; its operation GET /v2/runs/{runId}: Get one workflow run, including its summary and, while running,
+      the active step and message.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: connections
+    definition: 'Resource group in the contract; its operation GET /v2/connections: List connections (credentials) for the company.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: members
+    definition: 'Resource group in the contract; its operation GET /v2/members: List members of the company.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: roles
+    definition: 'Resource group in the contract; its operation GET /v2/roles: List roles available to the company, including global platform roles
+      (isGlobal).'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: companies
+    definition: 'Resource group in the contract; its operation GET /v2/companies: List companies with subscription info (plan, legacy flag, member
+      count).'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: environments
+    definition: 'Resource group in the contract; its operation GET /v2/environments: List company environments with the number of scheduled workflows
+      targeting each.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: api-keys
+    definition: 'Resource group in the contract; its operation GET /v2/api-keys: List API keys for the company: name, last use, and revocation
+      state.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: me
+    definition: 'Resource group in the contract; its operation GET /v2/me: Describe the calling API key, its effective company scope, and which
+      MindCloud capabilities that company has enabled.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: usage
+    definition: 'Resource group in the contract; its operation GET /v2/usage: Get the company task usage summary for the current accounting period
+      (trailing 30 days): used tasks, task limit, and soft-limit flag.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: universal
+    definition: 'Resource group in the contract; its operation GET /v2/universal/apps: List published Universal API apps that have executable
+      actions.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: embedded
+    definition: 'Resource group in the contract; its operation POST /v2/embedded/end-users/{endUserId}/connect-links: Create a single-use hosted
+      link for one end user to connect an available app or repair an owned connection.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: child-companies
+    definition: 'Resource group in the contract; its operation GET /v2/child-companies: List the child organizations of the key''s company.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json
+  - term: meta
+    definition: 'Resource group in the contract; its operation GET /v2/openapi.json: The OpenAPI 3.1 document describing the v2 surface, generated
+      from the endpoint registry.'
+    tags:
+    - Resource Group
+    source: openapi/connect-mindcloud-openapi.json

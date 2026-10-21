@@ -1,23 +1,150 @@
 aid: mindcloud
+
 name: MindCloud
-description: 'MindCloud is a company surfaced via the API Evangelist harvest backlog (source: g2-catalog)
-  and added to the network as a stub for full-pipeline profiling.'
+
+image: https://mindcloud.co/opengraph-image
+
+description: MindCloud offers a low-code workflow and integration platform that connects business tools and automates data movement. It provides
+  full‑service custom integrations, a visual integration builder, and a universal API that links to over 3,400 applications. The service is aimed
+  at fast‑growing companies that need expert‑guided, production‑grade integrations without dedicated engineering resources.
+
 url: https://raw.githubusercontent.com/api-evangelist/mindcloud/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:g2-catalog
+
 x-tier: stub
+
 x-tier-reason: harvest
+
 specificationVersion: '0.20'
+
 created: '2026-10-20'
+
 modified: '2026-10-20'
+
 tags:
-- Company
-apis: []
+- Integration Platform
+- Low-code
+- API
+- Enterprise Integration
+- Workflow
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/mindcloud-agentic-access.yml
+- type: Spectral
+  url: rules/mindcloud-rules.yml
+- type: JSONLD
+  url: json-ld/mindcloud-context.jsonld
+- type: Vocabulary
+  url: vocabulary/mindcloud-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/mindcloud-data-model.yml
+- type: ChangeLog
+  url: changelog/mindcloud-changelog.yml
+- type: Authentication
+  url: authentication/mindcloud-authentication.yml
+- type: ErrorCatalog
+  url: errors/mindcloud-problem-types.yml
+- type: Conformance
+  url: conformance/mindcloud-conformance.yml
+- type: LLMsTxt
+  url: llms/mindcloud-llms.txt
+- type: WellKnown
+  url: well-known/mindcloud-well-known.yml
+- type: Hosts
+  url: hosts/mindcloud-hosts.yml
+- type: Vendors
+  url: vendors/mindcloud-vendors.yml
+- type: TrustCenter
+  url: https://trust.mindcloud.co
+- type: TermsOfService
+  url: https://mindcloud.co/terms-of-use
+- type: Support
+  url: https://mindcloud.co/apps/categories/support
+- type: PrivacyPolicy
+  url: https://mindcloud.co/privacy-policy
+- type: GettingStarted
+  url: https://mindcloud.co/docs/cirra/cirra-getting-started/what-is-cirra
+- type: Documentation
+  url: https://docs.mindcloud.co/
+- type: APIReference
+  url: https://mindcloud.co/changelog
+- type: DomainSecurity
+  url: security/mindcloud-domain-security.yml
 - type: Website
   url: https://mindcloud.co/
+- type: OpenAPI
+  url: openapi/mindcloud-openapi.json
+  source: https://mindcloud.co/openapi.json
+
+apis:
+- name: MindCloud API
+  description: Primary API for MindCloud services
+  humanURL: https://mindcloud.co/docs/universal/rest/home/latest
+  baseURL: https://mindcloud.co
+  properties:
+  - type: OpenAPI
+    url: openapi/mindcloud-openapi.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+  aid: mindcloud:mindcloud-api
+- name: Connect API
+  description: Connect API for MindCloud integrations
+  humanURL: https://mindcloud.co/docs/connect
+  baseURL: https://connect.mindcloud.co/v2
+  properties:
+  - type: OpenAPI
+    url: openapi/connect-mindcloud-openapi.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-me-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-lookup-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-universal-action-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/mindcloud-run-schema.json
+  aid: mindcloud:connect-api
+
+x-coverage:
+  state: gated
+  reason: partner-login
+  method: derived
+  generated: '2026-10-20'
+  generator: derive-coverage.py (pre-flight evidence)
+  detail: the company serves an API surface but requires credentials before any description of it can be read
+  evidence:
+  - url: https://mindcloud.co/openapi.json
+    status: null
+  - url: https://connect.mindcloud.co/v1/openapi.json
+    status: null
+  - url: https://new.mindcloud.co/openapi.json
+    status: null
+  - url: https://connect.mindcloud.co/mcp
+    status: 401
+  - url: https://mindcloud.co/
+    status: 200

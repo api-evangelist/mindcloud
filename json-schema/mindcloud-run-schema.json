@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mindcloud/main/json-schema/mindcloud-run-schema.json",
+  "title": "Run",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/mindcloud-openapi.json#/components/schemas/Run",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Unique id of the run."
+    },
+    "workflowId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The workflow this run belongs to."
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Where the run stands or how it ended: waiting, running, finished, failed, cancelled, interrupted, limitExceeded, or cancelling."
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The workflow version that ran, or \"draft\"."
+    },
+    "environmentId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The environment the run targeted."
+    },
+    "environmentName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "That environment's name."
+    },
+    "startedOn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "When the run started."
+    },
+    "finishedOn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "When the run finished. Empty while it is still going."
+    },
+    "durationMs": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "How long the run took, in milliseconds."
+    },
+    "operations": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "How many tasks the run used. This is the number that counts against your limit."
+    },
+    "errorCount": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "How many errors the run logged."
+    },
+    "warningCount": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "How many warnings the run logged."
+    },
+    "infoCount": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "How many info entries the run logged."
+    },
+    "endUserId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The embedded end user the run belongs to, if any."
+    },
+    "installationId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The embedded installation the run belongs to, if any."
+    },
+    "triggerAppSlug": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The app that triggered the run."
+    }
+  },
+  "required": [
+    "id",
+    "workflowId",
+    "status",
+    "version",
+    "environmentId",
+    "environmentName",
+    "startedOn",
+    "finishedOn",
+    "durationMs",
+    "operations",
+    "errorCount",
+    "warningCount",
+    "infoCount",
+    "endUserId",
+    "installationId",
+    "triggerAppSlug"
+  ]
+}

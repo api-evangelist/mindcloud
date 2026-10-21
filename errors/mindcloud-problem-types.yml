@@ -1,0 +1,86 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/connect-mindcloud-openapi.json
+- openapi/mindcloud-openapi.json
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+coverage:
+  operations: 98
+  statuses_declared: 10
+problems:
+- status: 400
+  title: Bad Request
+  description: The request is invalid (INVALID_QUERY).
+  operations: 40
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Authentication failed.
+  operations: 8
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 403
+  title: Forbidden
+  description: An Embedded end user's or installation's run cannot be used under X-Company-Id (CHILD_SCOPE_FORBIDDEN,
+    COMPANY_SCOPE_MISMATCH).
+  operations: 40
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 404
+  title: Not Found
+  description: No workflow with this id belongs to the company (NOT_FOUND).
+  operations: 32
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 409
+  title: Conflict
+  description: UNIVERSAL_ACTION_SLUG_CONFLICT or CONNECTION_CHOICE_REQUIRED. Multiple usable end-user accounts require
+    a public connectionId; error.details
+  operations: 22
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 429
+  title: Too Many Requests
+  description: Rate limit exceeded.
+  operations: 10
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 500
+  title: Internal Server Error
+  description: The insert returned no row (WORKFLOW_CREATE_FAILED).
+  operations: 18
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 502
+  title: Bad Gateway
+  description: The provider-side revoke declared by the app failed, so nothing was deleted (CREDENTIAL_DELETE_ACTION_FAILED).
+  operations: 6
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 503
+  title: Service Unavailable
+  description: Embedded scope or connection storage is temporarily unavailable.
+  operations: 12
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: default
+  title: null
+  description: Error.
+  operations: 96
+  media_types:
+  - application/json
+  schema: ErrorResponse

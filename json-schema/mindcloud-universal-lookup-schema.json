@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mindcloud/main/json-schema/mindcloud-universal-lookup-schema.json",
+  "title": "UniversalLookup",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/mindcloud-openapi.json#/components/schemas/UniversalLookup",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "resolved",
+        "ambiguous",
+        "notFound"
+      ],
+      "description": "Whether the lookup resolved or needs more input: resolved, ambiguous, or notFound."
+    },
+    "reasonCode": {
+      "type": "string",
+      "description": "A stable reason code: EXACT_MATCH, STRONG_MATCH, MULTIPLE_HIGH_CONFIDENCE_CANDIDATES, INSUFFICIENT_CONFIDENCE, or NO_CANDIDATES."
+    },
+    "selected": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The canonical value to pass as the argument."
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "What the option is called."
+        }
+      },
+      "description": "The selected lookup option, when one exact match exists."
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The canonical value to pass as the argument."
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "What the option is called."
+          }
+        }
+      },
+      "description": "Matching options the caller can choose from."
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "fixedOptions",
+        "lookupAction"
+      ],
+      "description": "Where the choices came from: fixedOptions (the argument's own list) or lookupAction (a provider read)."
+    },
+    "lookup": {
+      "type": "object",
+      "properties": {
+        "labelKey": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The source field shown as the option label."
+        },
+        "valueKey": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The source field passed as the argument value."
+        },
+        "actionId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The action that lists the options, or null for fixed options."
+        }
+      },
+      "description": "The lookup definition for this argument."
+    },
+    "paging": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "The limit the source was asked for."
+        },
+        "offset": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "The offset the source was asked for."
+        },
+        "fetchedCandidatesCount": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "How many options the source answered."
+        }
+      },
+      "description": "Offset paging details for the candidates."
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "NO_CANDIDATES, or the reasonCode that needs a choice."
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "What to do next."
+          }
+        }
+      },
+      "description": "Instructions for the caller when more input is needed."
+    }
+  },
+  "required": [
+    "status",
+    "reasonCode",
+    "source",
+    "lookup",
+    "paging",
+    "hints"
+  ]
+}

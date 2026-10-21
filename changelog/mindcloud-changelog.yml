@@ -1,0 +1,75 @@
+generated: '2026-10-20'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://mindcloud.co/changelog
+sources:
+- https://mindcloud.co/changelog
+entries:
+- breaking: true
+  highlights:
+  - Today we're introducing the MindCloud API and its new V2 surface, with 23 endpoints for reading workflows, runs and results, connections,
+    users, roles, environments, and usage, plus creating and revoking API keys.
+  - All V1 endpoints remain supported for existing integrations, but V1 is frozen and deprecated for new development.
+  date: '2026-07-24'
+- breaking: false
+  highlights:
+  - MindCloud added over 60 apps in the final weeks of June, bringing in recognizable tools for spreadsheets, AI workflows, observability, ecommerce,
+    forms, email, support, documents, databases, signatures, and public utility data.
+  date: '2026-06-23'
+- breaking: false
+  highlights:
+  - Embedded installations can now carry customer‑specific context through setup, workflow runs, and logs.
+  - Build installation labels from setup details such as customer name or email.
+  - Pass the current installation ID into embedded workflow runs.
+  date: '2026-06-17'
+- breaking: false
+  highlights:
+  - This week added 434 apps, with especially strong coverage for developer tools, productivity systems, data and analytics platforms, commerce
+    workflows, communication apps, and AI services.
+  date: '2026-06-14'
+- breaking: false
+  highlights:
+  - The AI workflow assistant now gives builders more control during longer workflow‑building sessions and safer recovery when a change needs
+    to be reversed.
+  - Stop in‑progress assistant responses when needed.
+  - Dictate prompts with voice input or use keyboard shortcuts to move through assistant actions.
+  date: '2026-06-12'
+- breaking: false
+  highlights:
+  - MindCloud added 466 apps this week across developer infrastructure, communication, productivity, commerce, analytics, CRM, marketing, support,
+    AI, and public data.
+  date: '2026-06-07'
+- breaking: false
+  highlights:
+  - Flow control steps can now respond differently when a step succeeds, fails, or returns no results.
+  - Configure separate behavior for success, failure, and empty‑result outcomes.
+  date: '2026-06-03'
+- breaking: false
+  highlights:
+  - MindCloud now includes an HTTP Request step for calling external endpoints directly from a workflow.
+  - Import an existing request from cURL and preview the parsed request before applying it.
+  date: '2026-06-01'
+- breaking: false
+  highlights:
+  - MindCloud added 34 apps this week, including several names users will recognize immediately across communication, payments, creative work,
+    support, productivity, ads, and cloud services.
+  date: '2026-05-31'
+- breaking: false
+  highlights:
+  - Workflow logs and run details now make it easier to investigate large histories, repeated step output, and operational activity.
+  - Search inside workflow log steps and highlight matching output.
+  - Export work done, errors, and warnings as CSV.
+  date: '2026-05-29'
+- breaking: false
+  highlights:
+  - Workflow schedules now support precise fixed‑time runs and recover better when scheduled work is picked up slightly late.
+  - Choose exact schedule times beyond standard quarter‑hour options.
+  date: '2026-05-28'
+- breaking: false
+  highlights:
+  - MindCloud added 22 apps this week, moving beyond one‑off launches into a broader catalog that covers customer messages, marketing operations,
+    commerce activity, scheduling, analytics, and utility APIs.
+  date: '2026-04-05'
+current_version: API V2
+note: Versioning scheme not explicitly stated on the page.
+docs: https://mindcloud.co/changelog

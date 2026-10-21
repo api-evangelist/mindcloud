@@ -1,0 +1,11 @@
+{
+  "generated": "2026-10-20",
+  "method": "derived",
+  "type": "MCPServer",
+  "source": "derived",
+  "deployment": {
+    "mode": "none",
+    "auth": "none",
+    "verified": "derived"
+  }
+}

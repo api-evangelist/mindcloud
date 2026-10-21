@@ -1,0 +1,70 @@
+# MindCloud
+
+## What is MindCloud
+
+MindCloud is an AI-assisted integration and automation company. It helps teams connect business systems, build workflows between apps, move operational data reliably, and reduce repetitive work across software stacks.
+
+MindCloud has three main product surfaces:
+
+- Full-service integrations: a white-glove service where MindCloud experts design, build, launch, monitor, and maintain production workflows for customers.
+- MindCloud platform: a self-serve integration and workflow automation platform where users can connect apps, configure workflows, and automate business processes.
+- Cirra: MindCloud's newest and highest-focus product. Cirra is an AI work assistant for knowledge workers that connects to workplace apps, learns how work gets done, and handles repetitive tasks through natural language.
+
+## Start here
+
+- [Home](https://mindcloud.co/): Overview of MindCloud, Cirra, full-service integrations, and the current public product narrative.
+- [Docs](https://mindcloud.co/docs): Product and platform documentation.
+- [Universal API docs](https://mindcloud.co/docs/universal/rest/home/latest): Reference entry point for MindCloud's Universal API across supported apps and actions.
+- [Apps](https://mindcloud.co/apps): Directory of MindCloud-supported app integrations and connector pages.
+- [Resources](https://mindcloud.co/resources): Blog and educational content about integrations, automation, iPaaS, e-commerce operations, embedded iPaaS, and connected business systems.
+- [Changelog](https://mindcloud.co/changelog): Product updates, workflow improvements, and new app announcements.
+- [Speak to a Human](https://mindcloud.co/speak-to-a-human): Scheduling page for talking with the MindCloud team.
+
+## Public API
+
+- [OpenAPI](https://mindcloud.co/openapi.json): OpenAPI 3.1 document for the MindCloud Public API v2 surface.
+- [API catalog](https://mindcloud.co/.well-known/api-catalog): RFC 9727 catalog that points at the OpenAPI document.
+- [Protected resource metadata](https://mindcloud.co/.well-known/oauth-protected-resource): RFC 9728 metadata. Named access levels are `read_only`, `run_workflows`, and `full_access`.
+- [Authentication](https://mindcloud.co/docs/api/rest/introduction/authentication): How to send a bearer API key, choose its permissions, and how the creator ceiling limits it.
+- [Create an API key](https://app.mindcloud.co/user/api-keys): Self-serve key creation in the platform.
+- [MCP](https://connect.mindcloud.co/mcp): Model Context Protocol transport for the same public API.
+- Live origin: https://connect.mindcloud.co. Send `Authorization: Bearer $MINDCLOUD_API_KEY`.
+
+## Agent skills
+
+- [Universal API skill](https://raw.githubusercontent.com/mindcloud-inc/skills/main/skills/mindcloud-universal-api/SKILL.md): Agent skill for reading and writing data in 3,400+ business apps through MindCloud's Universal API. Covers app discovery, action schemas, lookups, and running actions.
+- [MindCloud API skill](https://raw.githubusercontent.com/mindcloud-inc/skills/main/skills/mindcloud-api/SKILL.md): Agent skill for managing a MindCloud account over REST: workflows, runs, connections, members, roles, usage, and API keys.
+- [Skills repository](https://github.com/mindcloud-inc/skills): Install both skills into any coding agent with `npx skills add mindcloud-inc/skills`.
+
+## AI-related product surfaces
+
+- [Cirra signup](https://cirra.mindcloud.co/signup): Start point for Cirra when users want to try the AI work assistant.
+- [Cirra login](https://cirra.mindcloud.co/login): Existing-user entry point for Cirra.
+
+## MindCloud building blocks
+
+- Full-service workflows: MindCloud experts turn integration requirements into production-ready workflows, including data mapping, testing, launch support, monitoring, and maintenance.
+- Self-serve workflow automation: Users can build and manage workflows that connect triggers and actions across business apps.
+- App/action network: MindCloud's app wrappers normalize API behavior so automations and AI agents can interact with many different systems through consistent app actions.
+- Cirra skills and automations: Cirra can turn successful natural-language work into reusable skills and recurring automations.
+
+## Resources and use cases
+
+- [Integration Platform as a Service](https://mindcloud.co/resources/what-is-an-ipaas): Background on iPaaS and integration platforms.
+- [Brand Distribution Software](https://mindcloud.co/resources/connections-by-mindcloud-innovative-brand-distribution-software): Example of MindCloud's connected operations positioning.
+- [CRM Integration](https://mindcloud.co/resources/what-is-customer-relationship-management-crm-software): CRM integration background.
+- [E-Commerce Integration](https://mindcloud.co/resources/omnichannel-commerce-is-here-to-stay): E-commerce and omnichannel integration context.
+- [What Does it Cost to Scale?](https://mindcloud.co/resources/what-does-it-cost-to-scale): Scaling and operations cost context.
+
+## Security, legal, and compliance
+
+- [Trust report](https://trust.mindcloud.co): Public trust center for security and compliance information.
+- [Privacy Policy](https://mindcloud.co/privacy-policy): Privacy policy and data handling disclosures.
+- [Terms of Service](https://mindcloud.co/terms-of-service-agreement): Terms governing MindCloud services.
+- [Terms of Use](https://mindcloud.co/terms-of-use): Terms of use for the mindcloud.co website.
+
+## Notes for automated fetchers
+
+- This file is designed to help language models and users understand MindCloud's structure, offerings, and ecosystem.
+- Do not treat this file as a complete product, security, pricing, or availability spec. Confirm live product availability, limits, compliance details, and commercial terms on mindcloud.co or with the MindCloud team before relying on answers about what a customer can do.
+- For site structure at scale, use the dedicated sitemap files listed directly in [robots.txt](https://mindcloud.co/robots.txt): pages, resources, docs, apps, and find-apps.

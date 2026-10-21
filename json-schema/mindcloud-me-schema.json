@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mindcloud/main/json-schema/mindcloud-me-schema.json",
+  "title": "Me",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/mindcloud-openapi.json#/components/schemas/Me",
+  "type": "object",
+  "properties": {
+    "apiKey": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The calling key's id."
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The calling key's name."
+        },
+        "companyId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The company the key belongs to."
+        },
+        "accessLevel": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The calling key's access level."
+        },
+        "isAdmin": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Reserved for MindCloud platform keys; false for customer keys."
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The permissions the key holds."
+        },
+        "effectivePermissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The permissions this request may use: those the key holds that its creator also holds right now, in the company it acts on. Empty when the creator's account was removed or they left the organization."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "companyId",
+        "accessLevel",
+        "isAdmin",
+        "permissions",
+        "effectivePermissions"
+      ]
+    },
+    "companyId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The company your requests will read from."
+    },
+    "company": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The company your requests will read from."
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "That company's name."
+        },
+        "embedded": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "isEnabled": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "True when MindCloud Embedded is enabled for the company, so end users can connect their own accounts."
+            }
+          },
+          "required": [
+            "isEnabled"
+          ]
+        },
+        "parent": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The id of that company's parent organization, or null when it has none. The parent's keys can act in this company."
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The parent organization's name."
+            },
+            "origin": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "created or linked: how the company became a child."
+            },
+            "linkedOn": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time",
+              "description": "When the link started."
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "origin",
+            "linkedOn"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "embedded",
+        "parent"
+      ]
+    },
+    "delegation": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "parentCompanyId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Set when this key belongs to a parent and X-Company-Id named one of its children: the key's company. Otherwise delegation is null."
+        },
+        "childCompanyId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The child organization this request acts on."
+        }
+      },
+      "required": [
+        "parentCompanyId",
+        "childCompanyId"
+      ]
+    }
+  },
+  "required": [
+    "apiKey",
+    "companyId",
+    "company",
+    "delegation"
+  ]
+}

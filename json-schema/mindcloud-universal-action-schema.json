@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mindcloud/main/json-schema/mindcloud-universal-action-schema.json",
+  "title": "UniversalAction",
+  "x-generated": "2026-10-20",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/mindcloud-openapi.json#/components/schemas/UniversalAction",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Unique id of the action."
+    },
+    "appSlug": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The app slug used in Universal API routes."
+    },
+    "appVersion": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The resolved published app version."
+    },
+    "actionSlug": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The action slug used in Universal API routes."
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The action's display name."
+    },
+    "method": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The provider method selected by the action definition."
+    },
+    "operation": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The action operation, such as read or create."
+    },
+    "supports": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "The response controls supported by this action."
+    },
+    "queryCapabilities": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Limits and paging capabilities for this action."
+    },
+    "requiredArguments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object"
+      },
+      "description": "Arguments the action requires."
+    },
+    "optionalArguments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object"
+      },
+      "description": "Arguments the action accepts but does not require, with includeArguments=all."
+    },
+    "responseFields": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "Field keys the action can return."
+    },
+    "slugConflict": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "True when more than one action resolves to this slug."
+    },
+    "appId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The app that provides this action. verbosity=full only."
+    },
+    "appName": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The app's display name. verbosity=full only."
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "What the action does. verbosity=full only."
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The provider model this action uses. verbosity=full only."
+    },
+    "controls": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Response controls and their defaults. verbosity=full only."
+    },
+    "responseSchema": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object"
+      },
+      "description": "Definitions for fields the action can return. verbosity=full only."
+    },
+    "isSchemaDynamic": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "True when the provider determines the response schema at run time. verbosity=full only."
+    }
+  },
+  "required": [
+    "id",
+    "appSlug",
+    "appVersion",
+    "actionSlug",
+    "name",
+    "operation"
+  ]
+}

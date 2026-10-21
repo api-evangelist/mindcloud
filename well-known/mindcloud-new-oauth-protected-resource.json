@@ -1,0 +1,1 @@
+{"resource":"https://connect.mindcloud.co","bearer_methods_supported":["header"],"scopes_supported":["read_only","run_workflows","full_access"],"resource_documentation":"https://mindcloud.co/docs/api/rest/introduction/authentication","resource_name":"MindCloud Public API"}

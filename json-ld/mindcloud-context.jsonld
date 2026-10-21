@@ -1,0 +1,527 @@
+{
+  "@context": {
+    "@vocab": "https://mindcloud.co/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "mindcloud": "https://mindcloud.co/schema#",
+    "ErrorResponse": "mindcloud:ErrorResponse",
+    "success": {
+      "@id": "mindcloud:success",
+      "@type": "xsd:boolean"
+    },
+    "error": {
+      "@id": "mindcloud:error"
+    },
+    "ListMeta": "mindcloud:ListMeta",
+    "pagination": {
+      "@id": "mindcloud:pagination"
+    },
+    "ConnectionInUseErrorResponse": "mindcloud:ConnectionInUseErrorResponse",
+    "UniversalConflictErrorResponse": "mindcloud:UniversalConflictErrorResponse",
+    "ApiKey": "mindcloud:ApiKey",
+    "id": {
+      "@id": "mindcloud:id",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "mindcloud:name",
+      "@type": "xsd:string"
+    },
+    "accessLevel": {
+      "@id": "mindcloud:accessLevel",
+      "@type": "xsd:string"
+    },
+    "permissions": {
+      "@id": "mindcloud:permissions",
+      "@container": "@list"
+    },
+    "key": {
+      "@id": "mindcloud:key",
+      "@type": "xsd:string"
+    },
+    "createdOn": {
+      "@id": "mindcloud:createdOn",
+      "@type": "xsd:dateTime"
+    },
+    "ApiKeySummary": "mindcloud:ApiKeySummary",
+    "usedOn": {
+      "@id": "mindcloud:usedOn",
+      "@type": "xsd:dateTime"
+    },
+    "revokedOn": {
+      "@id": "mindcloud:revokedOn",
+      "@type": "xsd:dateTime"
+    },
+    "createdBy": {
+      "@id": "mindcloud:createdBy",
+      "@type": "xsd:string"
+    },
+    "updatedOn": {
+      "@id": "mindcloud:updatedOn",
+      "@type": "xsd:dateTime"
+    },
+    "ChildCompany": "mindcloud:ChildCompany",
+    "description": {
+      "@id": "mindcloud:description",
+      "@type": "xsd:string"
+    },
+    "origin": {
+      "@id": "mindcloud:origin",
+      "@type": "xsd:string"
+    },
+    "linkedOn": {
+      "@id": "mindcloud:linkedOn",
+      "@type": "xsd:dateTime"
+    },
+    "memberCount": {
+      "@id": "mindcloud:memberCount",
+      "@type": "xsd:integer"
+    },
+    "ownerCount": {
+      "@id": "mindcloud:ownerCount",
+      "@type": "xsd:integer"
+    },
+    "Company": "mindcloud:Company",
+    "timezone": {
+      "@id": "mindcloud:timezone",
+      "@type": "xsd:string"
+    },
+    "plan": {
+      "@id": "mindcloud:plan",
+      "@type": "xsd:string"
+    },
+    "isPersonal": {
+      "@id": "mindcloud:isPersonal",
+      "@type": "xsd:boolean"
+    },
+    "isDeleted": {
+      "@id": "mindcloud:isDeleted",
+      "@type": "xsd:boolean"
+    },
+    "subscriptionIsLegacy": {
+      "@id": "mindcloud:subscriptionIsLegacy",
+      "@type": "xsd:boolean"
+    },
+    "subscriptionUpdatedOn": {
+      "@id": "mindcloud:subscriptionUpdatedOn",
+      "@type": "xsd:dateTime"
+    },
+    "CompanyProfile": "mindcloud:CompanyProfile",
+    "ConnectLink": "mindcloud:ConnectLink",
+    "url": {
+      "@id": "mindcloud:url",
+      "@type": "xsd:string"
+    },
+    "appName": {
+      "@id": "mindcloud:appName",
+      "@type": "xsd:string"
+    },
+    "expiresOn": {
+      "@id": "mindcloud:expiresOn",
+      "@type": "xsd:dateTime"
+    },
+    "singleUse": {
+      "@id": "mindcloud:singleUse",
+      "@type": "xsd:boolean"
+    },
+    "Connection": "mindcloud:Connection",
+    "appId": {
+      "@id": "mindcloud:appId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "mindcloud:status",
+      "@type": "xsd:string"
+    },
+    "isCompany": {
+      "@id": "mindcloud:isCompany",
+      "@type": "xsd:boolean"
+    },
+    "endUserId": {
+      "@id": "mindcloud:endUserId",
+      "@type": "xsd:string"
+    },
+    "installationId": {
+      "@id": "mindcloud:installationId",
+      "@type": "xsd:string"
+    },
+    "userId": {
+      "@id": "mindcloud:userId",
+      "@type": "xsd:string"
+    },
+    "testedOn": {
+      "@id": "mindcloud:testedOn",
+      "@type": "xsd:dateTime"
+    },
+    "authenticatedOn": {
+      "@id": "mindcloud:authenticatedOn",
+      "@type": "xsd:dateTime"
+    },
+    "ConnectionTestResult": "mindcloud:ConnectionTestResult",
+    "supported": {
+      "@id": "mindcloud:supported",
+      "@type": "xsd:boolean"
+    },
+    "message": {
+      "@id": "mindcloud:message",
+      "@type": "xsd:string"
+    },
+    "DailyUsage": "mindcloud:DailyUsage",
+    "date": {
+      "@id": "mindcloud:date",
+      "@type": "xsd:string"
+    },
+    "tasks": {
+      "@id": "mindcloud:tasks",
+      "@type": "xsd:integer"
+    },
+    "DeletedResource": "mindcloud:DeletedResource",
+    "EmbeddedConnection": "mindcloud:EmbeddedConnection",
+    "appSlug": {
+      "@id": "mindcloud:appSlug",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "mindcloud:label",
+      "@type": "xsd:string"
+    },
+    "connectedOn": {
+      "@id": "mindcloud:connectedOn",
+      "@type": "xsd:dateTime"
+    },
+    "Environment": "mindcloud:Environment",
+    "isDefault": {
+      "@id": "mindcloud:isDefault",
+      "@type": "xsd:boolean"
+    },
+    "workflowCount": {
+      "@id": "mindcloud:workflowCount",
+      "@type": "xsd:integer"
+    },
+    "Me": "mindcloud:Me",
+    "apiKey": {
+      "@id": "mindcloud:apiKey"
+    },
+    "companyId": {
+      "@id": "mindcloud:companyId",
+      "@type": "xsd:string"
+    },
+    "company": {
+      "@id": "mindcloud:company"
+    },
+    "delegation": {
+      "@id": "mindcloud:delegation"
+    },
+    "Member": "mindcloud:Member",
+    "email": {
+      "@id": "mindcloud:email",
+      "@type": "xsd:string"
+    },
+    "isPending": {
+      "@id": "mindcloud:isPending",
+      "@type": "xsd:boolean"
+    },
+    "roleId": {
+      "@id": "mindcloud:roleId",
+      "@type": "xsd:string"
+    },
+    "roleName": {
+      "@id": "mindcloud:roleName",
+      "@type": "xsd:string"
+    },
+    "QueuedRun": "mindcloud:QueuedRun",
+    "workflowId": {
+      "@id": "mindcloud:workflowId",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "mindcloud:version",
+      "@type": "xsd:string"
+    },
+    "environmentId": {
+      "@id": "mindcloud:environmentId",
+      "@type": "xsd:string"
+    },
+    "Role": "mindcloud:Role",
+    "isAdmin": {
+      "@id": "mindcloud:isAdmin",
+      "@type": "xsd:boolean"
+    },
+    "isGlobal": {
+      "@id": "mindcloud:isGlobal",
+      "@type": "xsd:boolean"
+    },
+    "RoleSummary": "mindcloud:RoleSummary",
+    "Run": "mindcloud:Run",
+    "environmentName": {
+      "@id": "mindcloud:environmentName",
+      "@type": "xsd:string"
+    },
+    "startedOn": {
+      "@id": "mindcloud:startedOn",
+      "@type": "xsd:dateTime"
+    },
+    "finishedOn": {
+      "@id": "mindcloud:finishedOn",
+      "@type": "xsd:dateTime"
+    },
+    "durationMs": {
+      "@id": "mindcloud:durationMs",
+      "@type": "xsd:decimal"
+    },
+    "operations": {
+      "@id": "mindcloud:operations",
+      "@type": "xsd:integer"
+    },
+    "errorCount": {
+      "@id": "mindcloud:errorCount",
+      "@type": "xsd:integer"
+    },
+    "warningCount": {
+      "@id": "mindcloud:warningCount",
+      "@type": "xsd:integer"
+    },
+    "infoCount": {
+      "@id": "mindcloud:infoCount",
+      "@type": "xsd:integer"
+    },
+    "triggerAppSlug": {
+      "@id": "mindcloud:triggerAppSlug",
+      "@type": "xsd:string"
+    },
+    "RunCancellation": "mindcloud:RunCancellation",
+    "RunDetail": "mindcloud:RunDetail",
+    "summary": {
+      "@id": "mindcloud:summary",
+      "@type": "xsd:string"
+    },
+    "activeStepId": {
+      "@id": "mindcloud:activeStepId",
+      "@type": "xsd:string"
+    },
+    "activeMessage": {
+      "@id": "mindcloud:activeMessage",
+      "@type": "xsd:string"
+    },
+    "RunOperation": "mindcloud:RunOperation",
+    "workflowLogId": {
+      "@id": "mindcloud:workflowLogId",
+      "@type": "xsd:string"
+    },
+    "stepId": {
+      "@id": "mindcloud:stepId",
+      "@type": "xsd:string"
+    },
+    "stepInstanceId": {
+      "@id": "mindcloud:stepInstanceId",
+      "@type": "xsd:string"
+    },
+    "actionId": {
+      "@id": "mindcloud:actionId",
+      "@type": "xsd:string"
+    },
+    "model": {
+      "@id": "mindcloud:model",
+      "@type": "xsd:string"
+    },
+    "operation": {
+      "@id": "mindcloud:operation",
+      "@type": "xsd:string"
+    },
+    "actionStatus": {
+      "@id": "mindcloud:actionStatus",
+      "@type": "xsd:string"
+    },
+    "primaryKey": {
+      "@id": "mindcloud:primaryKey",
+      "@type": "xsd:string"
+    },
+    "RunStep": "mindcloud:RunStep",
+    "ran": {
+      "@id": "mindcloud:ran",
+      "@type": "xsd:boolean"
+    },
+    "path": {
+      "@id": "mindcloud:path",
+      "@type": "xsd:string"
+    },
+    "RunStepDetail": "mindcloud:RunStepDetail",
+    "request": {
+      "@id": "mindcloud:request"
+    },
+    "response": {
+      "@id": "mindcloud:response"
+    },
+    "UniversalAction": "mindcloud:UniversalAction",
+    "appVersion": {
+      "@id": "mindcloud:appVersion",
+      "@type": "xsd:string"
+    },
+    "actionSlug": {
+      "@id": "mindcloud:actionSlug",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "mindcloud:method",
+      "@type": "xsd:string"
+    },
+    "supports": {
+      "@id": "mindcloud:supports"
+    },
+    "queryCapabilities": {
+      "@id": "mindcloud:queryCapabilities"
+    },
+    "requiredArguments": {
+      "@id": "mindcloud:requiredArguments",
+      "@container": "@list"
+    },
+    "optionalArguments": {
+      "@id": "mindcloud:optionalArguments",
+      "@container": "@list"
+    },
+    "responseFields": {
+      "@id": "mindcloud:responseFields",
+      "@container": "@list"
+    },
+    "slugConflict": {
+      "@id": "mindcloud:slugConflict",
+      "@type": "xsd:boolean"
+    },
+    "controls": {
+      "@id": "mindcloud:controls"
+    },
+    "responseSchema": {
+      "@id": "mindcloud:responseSchema",
+      "@container": "@list"
+    },
+    "isSchemaDynamic": {
+      "@id": "mindcloud:isSchemaDynamic",
+      "@type": "xsd:boolean"
+    },
+    "UniversalActionDetail": "mindcloud:UniversalActionDetail",
+    "UniversalApp": "mindcloud:UniversalApp",
+    "slug": {
+      "@id": "mindcloud:slug",
+      "@type": "xsd:string"
+    },
+    "icon": {
+      "@id": "mindcloud:icon",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "mindcloud:category",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "mindcloud:type",
+      "@type": "xsd:string"
+    },
+    "aliases": {
+      "@id": "mindcloud:aliases",
+      "@container": "@list"
+    },
+    "publishedVersion": {
+      "@id": "mindcloud:publishedVersion",
+      "@type": "xsd:string"
+    },
+    "actionsTotal": {
+      "@id": "mindcloud:actionsTotal",
+      "@type": "xsd:integer"
+    },
+    "actionSlugsPreview": {
+      "@id": "mindcloud:actionSlugsPreview",
+      "@container": "@list"
+    },
+    "UniversalLookup": "mindcloud:UniversalLookup",
+    "reasonCode": {
+      "@id": "mindcloud:reasonCode",
+      "@type": "xsd:string"
+    },
+    "selected": {
+      "@id": "mindcloud:selected"
+    },
+    "candidates": {
+      "@id": "mindcloud:candidates",
+      "@container": "@list"
+    },
+    "source": {
+      "@id": "mindcloud:source",
+      "@type": "xsd:string"
+    },
+    "lookup": {
+      "@id": "mindcloud:lookup"
+    },
+    "paging": {
+      "@id": "mindcloud:paging"
+    },
+    "hints": {
+      "@id": "mindcloud:hints",
+      "@container": "@list"
+    },
+    "UsageSummary": "mindcloud:UsageSummary",
+    "periodStart": {
+      "@id": "mindcloud:periodStart",
+      "@type": "xsd:string"
+    },
+    "periodEnd": {
+      "@id": "mindcloud:periodEnd",
+      "@type": "xsd:string"
+    },
+    "usedTasks": {
+      "@id": "mindcloud:usedTasks",
+      "@type": "xsd:integer"
+    },
+    "taskLimit": {
+      "@id": "mindcloud:taskLimit",
+      "@type": "xsd:integer"
+    },
+    "softLimitEnabled": {
+      "@id": "mindcloud:softLimitEnabled",
+      "@type": "xsd:boolean"
+    },
+    "Workflow": "mindcloud:Workflow",
+    "isActive": {
+      "@id": "mindcloud:isActive",
+      "@type": "xsd:boolean"
+    },
+    "isTemplate": {
+      "@id": "mindcloud:isTemplate",
+      "@type": "xsd:boolean"
+    },
+    "size": {
+      "@id": "mindcloud:size",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "mindcloud:tags",
+      "@container": "@list"
+    },
+    "updatedBy": {
+      "@id": "mindcloud:updatedBy",
+      "@type": "xsd:string"
+    },
+    "WorkflowDetail": "mindcloud:WorkflowDetail",
+    "workflow": {
+      "@id": "mindcloud:workflow"
+    },
+    "WorkflowUsage": "mindcloud:WorkflowUsage",
+    "installations": {
+      "@id": "mindcloud:installations",
+      "@container": "@list"
+    },
+    "WorkflowVersion": "mindcloud:WorkflowVersion",
+    "isPublished": {
+      "@id": "mindcloud:isPublished",
+      "@type": "xsd:boolean"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "MindCloud API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects MindCloud's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-20) from openapi/connect-mindcloud-openapi.json, openapi/mindcloud-openapi.json.",
+  "dcterms:created": "2026-10-20",
+  "dcterms:source": [
+    "openapi/connect-mindcloud-openapi.json",
+    "openapi/mindcloud-openapi.json"
+  ]
+}
