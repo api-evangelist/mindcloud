@@ -25,6 +25,11 @@ modified: '2026-10-20'
 
 tags:
 - Integration Platform
+- Low-Code
+- Enterprise Integration
+- Workflows
+tags_raw:
+- Integration Platform
 - Low-code
 - API
 - Enterprise Integration
@@ -118,6 +123,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - APIKeys
+  tags_raw:
   - api-keys
   properties:
   - type: OpenAPI
@@ -162,6 +169,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Companies
+  tags_raw:
   - companies
   properties:
   - type: OpenAPI
@@ -184,6 +193,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Connections
+  tags_raw:
   - connections
   properties:
   - type: OpenAPI
@@ -206,6 +217,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Embedded
+  tags_raw:
   - embedded
   properties:
   - type: OpenAPI
@@ -228,6 +241,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Environment
+  tags_raw:
   - environments
   properties:
   - type: OpenAPI
@@ -250,6 +265,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Me
+  tags_raw:
   - me
   properties:
   - type: OpenAPI
@@ -272,6 +289,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Members
+  tags_raw:
   - members
   properties:
   - type: OpenAPI
@@ -294,6 +313,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Meta
+  tags_raw:
   - meta
   properties:
   - type: OpenAPI
@@ -316,6 +337,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Roles
+  tags_raw:
   - roles
   properties:
   - type: OpenAPI
@@ -338,6 +361,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Runs
+  tags_raw:
   - runs
   properties:
   - type: OpenAPI
@@ -360,6 +385,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Universal
+  tags_raw:
   - universal
   properties:
   - type: OpenAPI
@@ -382,6 +409,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Usage
+  tags_raw:
   - usage
   properties:
   - type: OpenAPI
@@ -404,6 +433,8 @@ apis:
   humanURL: https://mindcloud.co/docs/universal/rest/home/latest
   baseURL: https://connect.mindcloud.co/v2
   tags:
+  - Workflows
+  tags_raw:
   - workflows
   properties:
   - type: OpenAPI
