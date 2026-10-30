@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: MindCloud Public Me API
+  title: Mindcloud Me API
   version: 2.0.0
-  description: REST surface under /v2. Authenticate with a company-scoped API key sent as a bearer token. Each key holds a set of permissions; each operation lists the ones it requires as the apiKey security roles. A request may use a permission only while the user who created the key also holds it.
+  description: 'Operations tagged me across 3 of this provider''s published API definitions: connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://connect.mindcloud.co
 security:
@@ -49,6 +49,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    servers:
+    - url: https://connect.mindcloud.co
 components:
   schemas:
     ErrorResponse:
@@ -263,3 +265,7 @@ components:
       type: http
       scheme: bearer
       description: 'Company-scoped MindCloud API key sent as `Authorization: Bearer <key>`. Each key holds permissions from the MindCloud roles catalog (workflow:view, workflow:run, universal:read, api_key:manage, ...), chosen when it is created; each operation lists the ones it requires as this scheme''s roles. A request may use a permission only while the user who created the key still holds it in the company the request acts on; a missing one answers 403 with details.reason API_KEY_PERMISSION_DENIED and details.required, and a key whose creator left the organization answers API_KEY_CREATOR_INACTIVE. The key''s accessLevel (full_access, run_workflows, read_only, or none) summarizes its permissions. Create a key at https://app.mindcloud.co/user/api-keys.'
+x-refined-from:
+- connect-mindcloud-openapi.json
+- connect-mindcloud-openapi.json
+- mindcloud-openapi.json

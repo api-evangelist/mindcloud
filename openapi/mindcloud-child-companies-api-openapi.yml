@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: MindCloud Public Child Companies API
+  title: Mindcloud Child Companies API
   version: 2.0.0
-  description: REST surface under /v2. Authenticate with a company-scoped API key sent as a bearer token. Each key holds a set of permissions; each operation lists the ones it requires as the apiKey security roles. A request may use a permission only while the user who created the key also holds it.
+  description: 'Operations tagged child-companies across 3 of this provider''s published API definitions: connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://connect.mindcloud.co
 security:
@@ -204,6 +204,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    servers:
+    - url: https://connect.mindcloud.co
   /v2/child-companies/{companyId}:
     get:
       operationId: v2-get-child-company
@@ -323,28 +325,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    servers:
+    - url: https://connect.mindcloud.co
 components:
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      description: Number of results to skip for pagination (default 0).
-    limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: Maximum number of results to return (1-1000, default 100).
   schemas:
+    ListMeta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+              description: Matching records. A list read in SQL stops counting at 10000.
+            totalCountExact:
+              type: boolean
+              description: False when totalCount stopped at that cap.
+            hasNextPage:
+              type: boolean
+              description: True when another page follows. Page with this, not totalCount.
+            hasPreviousPage:
+              type: boolean
+          required:
+          - totalCount
+          - totalCountExact
+          - hasNextPage
+          - hasPreviousPage
+      required:
+      - pagination
+    ChildCompany:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The child organization's id. Send it in X-Company-Id to call other endpoints on the child.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The child organization's name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The child organization's description.
+        origin:
+          type:
+          - string
+          - 'null'
+          enum:
+          - created
+          - linked
+          - null
+          description: created when your company created it through the API, linked when an existing organization accepted your company as its parent in Cirra.
+        linkedOn:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the link started.
+        memberCount:
+          type:
+          - integer
+          - 'null'
+          description: Members of the child organization, including pending invites.
+        ownerCount:
+          type:
+          - integer
+          - 'null'
+          description: Active Owners. A child cannot be released while this is 0.
+      required:
+      - id
+      - name
+      - description
+      - origin
+      - linkedOn
+      - memberCount
+      - ownerCount
+    DeletedResource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the resource that was deleted.
+      required:
+      - id
     ErrorResponse:
       type: object
       properties:
@@ -401,91 +468,32 @@ components:
       required:
       - success
       - error
-    ListMeta:
-      type: object
-      properties:
-        pagination:
-          type: object
-          properties:
-            totalCount:
-              type: integer
-              description: Matching records. A list read in SQL stops counting at 10000.
-            totalCountExact:
-              type: boolean
-              description: False when totalCount stopped at that cap.
-            hasNextPage:
-              type: boolean
-              description: True when another page follows. Page with this, not totalCount.
-            hasPreviousPage:
-              type: boolean
-          required:
-          - totalCount
-          - totalCountExact
-          - hasNextPage
-          - hasPreviousPage
-      required:
-      - pagination
-    DeletedResource:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the resource that was deleted.
-      required:
-      - id
-    ChildCompany:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The child organization's id. Send it in X-Company-Id to call other endpoints on the child.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The child organization's name.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The child organization's description.
-        origin:
-          type:
-          - string
-          - 'null'
-          enum:
-          - created
-          - linked
-          - null
-          description: created when your company created it through the API, linked when an existing organization accepted your company as its parent in Cirra.
-        linkedOn:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the link started.
-        memberCount:
-          type:
-          - integer
-          - 'null'
-          description: Members of the child organization, including pending invites.
-        ownerCount:
-          type:
-          - integer
-          - 'null'
-          description: Active Owners. A child cannot be released while this is 0.
-      required:
-      - id
-      - name
-      - description
-      - origin
-      - linkedOn
-      - memberCount
-      - ownerCount
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination (default 0).
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: Maximum number of results to return (1-1000, default 100).
   securitySchemes:
     apiKey:
       type: http
       scheme: bearer
       description: 'Company-scoped MindCloud API key sent as `Authorization: Bearer <key>`. Each key holds permissions from the MindCloud roles catalog (workflow:view, workflow:run, universal:read, api_key:manage, ...), chosen when it is created; each operation lists the ones it requires as this scheme''s roles. A request may use a permission only while the user who created the key still holds it in the company the request acts on; a missing one answers 403 with details.reason API_KEY_PERMISSION_DENIED and details.required, and a key whose creator left the organization answers API_KEY_CREATOR_INACTIVE. The key''s accessLevel (full_access, run_workflows, read_only, or none) summarizes its permissions. Create a key at https://app.mindcloud.co/user/api-keys.'
+x-refined-from:
+- connect-mindcloud-openapi.json
+- connect-mindcloud-openapi.json
+- mindcloud-openapi.json

@@ -1,7 +1,9 @@
 {
   "provider": "mindcloud",
   "sources": [
-    "connect-mindcloud-openapi.json"
+    "_original/connect-mindcloud-openapi.json",
+    "connect-mindcloud-openapi.json",
+    "mindcloud-openapi.json"
   ],
   "outputs": [
     "mindcloud-api-keys-api-openapi.yml",
@@ -20,11 +22,13 @@
     "mindcloud-workflows-api-openapi.yml"
   ],
   "archived": [
-    "archived openapi/connect-mindcloud-openapi.json"
+    "archived openapi/connect-mindcloud-openapi.json",
+    "archived openapi/mindcloud-openapi.json"
   ],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "connect-mindcloud-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "connect-mindcloud-openapi.json: declared missing tag: api-keys",
     "connect-mindcloud-openapi.json: declared missing tag: child-companies",
@@ -40,7 +44,66 @@
     "connect-mindcloud-openapi.json: declared missing tag: universal",
     "connect-mindcloud-openapi.json: declared missing tag: usage",
     "connect-mindcloud-openapi.json: declared missing tag: workflows",
-    "apis.yml register: written (+14 apis, 15 total)"
+    "connect-mindcloud-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "connect-mindcloud-openapi.json: declared missing tag: api-keys",
+    "connect-mindcloud-openapi.json: declared missing tag: child-companies",
+    "connect-mindcloud-openapi.json: declared missing tag: companies",
+    "connect-mindcloud-openapi.json: declared missing tag: connections",
+    "connect-mindcloud-openapi.json: declared missing tag: embedded",
+    "connect-mindcloud-openapi.json: declared missing tag: environments",
+    "connect-mindcloud-openapi.json: declared missing tag: me",
+    "connect-mindcloud-openapi.json: declared missing tag: members",
+    "connect-mindcloud-openapi.json: declared missing tag: meta",
+    "connect-mindcloud-openapi.json: declared missing tag: roles",
+    "connect-mindcloud-openapi.json: declared missing tag: runs",
+    "connect-mindcloud-openapi.json: declared missing tag: universal",
+    "connect-mindcloud-openapi.json: declared missing tag: usage",
+    "connect-mindcloud-openapi.json: declared missing tag: workflows",
+    "mindcloud-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mindcloud-openapi.json: declared missing tag: api-keys",
+    "mindcloud-openapi.json: declared missing tag: child-companies",
+    "mindcloud-openapi.json: declared missing tag: companies",
+    "mindcloud-openapi.json: declared missing tag: connections",
+    "mindcloud-openapi.json: declared missing tag: embedded",
+    "mindcloud-openapi.json: declared missing tag: environments",
+    "mindcloud-openapi.json: declared missing tag: me",
+    "mindcloud-openapi.json: declared missing tag: members",
+    "mindcloud-openapi.json: declared missing tag: meta",
+    "mindcloud-openapi.json: declared missing tag: roles",
+    "mindcloud-openapi.json: declared missing tag: runs",
+    "mindcloud-openapi.json: declared missing tag: universal",
+    "mindcloud-openapi.json: declared missing tag: usage",
+    "mindcloud-openapi.json: declared missing tag: workflows",
+    "tag 'api-keys' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'child-companies' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'companies' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'connections' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'embedded' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'environments' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'me' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'members' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'meta' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'roles' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'runs' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'universal' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'usage' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "tag 'workflows' spans 3 source specs (connect-mindcloud-openapi.json, connect-mindcloud-openapi.json, mindcloud-openapi.json): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "mindcloud-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-child-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-connections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-embedded-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-me-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-meta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-universal-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindcloud-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
