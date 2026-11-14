@@ -8,14 +8,26 @@ artifacts:
   authentication/mindcloud-authentication.yml:
     method: searched
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   changelog/mindcloud-changelog.yml:
     method: searched
+    evidence: declared in the artifact
+  compliance/mindcloud-compliance.yml:
+    method: harvested
     evidence: declared in the artifact
   conformance/mindcloud-conformance.yml:
     method: derived
     evidence: declared in the artifact
   data-model/mindcloud-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  eligibility/mindcloud-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/mindcloud-problem-types.yml:
     method: derived
@@ -32,7 +44,55 @@ artifacts:
   json-ld/mindcloud-context.jsonld:
     method: unknown
     evidence: no authorship recorded
+  json-schema/mindcloud-api-key-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-api-key-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-child-company-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-company-profile-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-company-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-connect-link-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-connection-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-connection-test-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-daily-usage-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-deleted-resource-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-embedded-connection-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-environment-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-list-meta-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/mindcloud-me-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-member-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-role-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-role-summary-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/mindcloud-run-detail-schema.json:
@@ -50,10 +110,16 @@ artifacts:
   json-schema/mindcloud-universal-lookup-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/mindcloud-usage-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/mindcloud-workflow-usage-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-10-23T190305.yml:
@@ -72,6 +138,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/mindcloud-lifecycle.yml:
@@ -148,6 +217,9 @@ artifacts:
   packages/mindcloud-packages.yml:
     method: searched
     evidence: declared in the artifact
+  privacy/mindcloud-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   regulatory/mindcloud-regulatory-posture.yml:
     method: unknown
     evidence: no authorship recorded
@@ -168,6 +240,9 @@ artifacts:
     evidence: declared in the artifact
   skills/mindcloud-run-universal-action.md:
     method: generated
+    evidence: declared in the artifact
+  terms/mindcloud-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   vendors/mindcloud-vendors.yml:
     method: unknown
